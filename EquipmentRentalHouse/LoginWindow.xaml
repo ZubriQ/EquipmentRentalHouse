@@ -18,6 +18,12 @@
                HorizontalAlignment="Center" VerticalAlignment="Center"
                Foreground="White" FontSize="26"/>
 
+        <!--
+        #1C658C
+        #398AB9
+        #D8D2CB
+        #EEEEEE
+        -->
         <!-- TODO: Templates -->
         <!-- TODO: Placeholders -->
         <StackPanel Grid.Row="1" Margin="40,0,40,20" VerticalAlignment="Center">
@@ -27,8 +33,8 @@
                         <Path Fill="#398AB9" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                     </Canvas>
                 </Viewbox>
-                <TextBox x:Name="tbUsername"
-                         Height="32" VerticalContentAlignment="Center" FontSize="14" BorderBrush="White"
+                <TextBox x:Name="tbUsername" BorderBrush="White"
+                         Height="32" VerticalContentAlignment="Center" FontSize="14" 
                          FontFamily="Georgia"/>
             </DockPanel>
 
@@ -40,11 +46,11 @@
                               Margin="5.001,4,5,4" Stretch="Fill" Width="19.999" />
                     </Grid>
                 </Viewbox>
-                <PasswordBox x:Name="pbPassword"
-                             Height="32"  VerticalContentAlignment="Center" FontSize="14" BorderBrush="White"/>
+                <PasswordBox x:Name="pbPassword" BorderBrush="White" 
+                             Height="32"  VerticalContentAlignment="Center" FontSize="14" />
             </DockPanel>
 
-            <Button x:Name="btnSignIn"
+            <Button x:Name="btnSignIn" 
                 Content="Sign in" Background="#D8D2CB" BorderBrush="#D8D2CB" Height="32"
                     Foreground="White" FontSize="16" Margin="3" FontFamily="Georgia"/>
         </StackPanel>

@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="Equipment Rental House" Height="450" Width="800">
     <DockPanel>
-        <Menu>
-            
-        </Menu>
         
         
     </DockPanel>

@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:EquipmentRentalHouse"
              StartupUri="LoginWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/CloseButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/MinimizeButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/SubmitButtonTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

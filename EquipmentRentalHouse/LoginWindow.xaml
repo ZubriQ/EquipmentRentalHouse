@@ -4,56 +4,78 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EquipmentRentalHouse"
-        mc:Ignorable="d" ResizeMode="NoResize"
-        Title="Equipment Rental House - Login" Height="250" Width="360"
-        Background="#398AB9">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+        mc:Ignorable="d" 
+        Height="255" Width="360"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border Background="#398AB9" CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <DockPanel Background="#1C658C"/>
-        <Label Content="USER LOGIN" FontFamily="Garamond"
-               HorizontalAlignment="Center" VerticalAlignment="Center"
-               Foreground="White" FontSize="26"/>
+            <Border x:Name="brdBorder" Background="#165170" CornerRadius="8,8,0,0" MouseDown="brdBorder_MouseDown" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
 
-        <!--
-        #1C658C
-        #398AB9
-        #D8D2CB
-        #EEEEEE
-        -->
-        <!-- TODO: Templates -->
-        <!-- TODO: Placeholders -->
-        <StackPanel Grid.Row="1" Margin="40,0,40,20" VerticalAlignment="Center">
-            <DockPanel Margin="3">
-                <Viewbox Width="32" Height="32" >
-                    <Canvas Width="24" Height="24" Background="#D8D2CB">
-                        <Path Fill="#398AB9" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
-                    </Canvas>
-                </Viewbox>
-                <TextBox x:Name="tbUsername" BorderBrush="White"
+                    <Label Content="Equipment Rental House" Foreground="White" FontFamily="Fonts/#Cinzel"
+                           VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+
+                    <Button x:Name="btnClose"
+                        Grid.Column="1" Template="{StaticResource Close}" Click="btnClose_Click"/>
+                </Grid>
+            </Border>
+
+            <DockPanel Grid.Row="1" Background="#1C658C" Grid.ColumnSpan="2"/>
+            <Label Grid.Row="1" Content="LOGIN" FontFamily="Fonts/#Dosis"
+               HorizontalAlignment="Center" VerticalAlignment="Bottom"
+               Foreground="White" FontSize="22" Grid.ColumnSpan="2" Margin="0,0,0,7" />
+
+            <!--
+            #1C658C
+            #398AB9
+            #D8D2CB
+            #EEEEEE
+            -->
+            <!-- TODO: Templates -->
+            <!-- TODO: Placeholders -->
+            <StackPanel Grid.Row="2" Margin="40,20,40,0" Grid.ColumnSpan="2">
+                <DockPanel Margin="3">
+                    <Viewbox Width="32" Height="32" >
+                        <Canvas Width="24" Height="24" Background="#D8D2CB">
+                            <Path Fill="#398AB9" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                        </Canvas>
+                    </Viewbox>
+                    <TextBox x:Name="tbUsername" BorderBrush="White"
                          Height="32" VerticalContentAlignment="Center" FontSize="14" 
                          FontFamily="Georgia"/>
-            </DockPanel>
+                </DockPanel>
 
-            <DockPanel Margin="3">
-                <Viewbox Width="32" Height="32">
-                    <Grid Width="30" Height="30" Background="#D8D2CB">
-                        <Path Fill="#398AB9" HorizontalAlignment="Center" VerticalAlignment="Center"
+                <DockPanel Margin="3">
+                    <Viewbox Width="32" Height="32">
+                        <Grid Width="30" Height="30" Background="#D8D2CB">
+                            <Path Fill="#398AB9" HorizontalAlignment="Center" VerticalAlignment="Center"
                               Data="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
-                              Margin="5.001,4,5,4" Stretch="Fill" Width="19.999" />
-                    </Grid>
-                </Viewbox>
-                <PasswordBox x:Name="pbPassword" BorderBrush="White" 
+                              Margin="5" Stretch="Fill" Width="20" />
+                        </Grid>
+                    </Viewbox>
+                    <PasswordBox x:Name="pbPassword" BorderBrush="White" 
                              Height="32"  VerticalContentAlignment="Center" FontSize="14" />
-            </DockPanel>
+                </DockPanel>
 
-            <Button x:Name="btnSignIn" 
-                Content="Sign in" Background="#D8D2CB" BorderBrush="#D8D2CB" Height="32"
-                    Foreground="White" FontSize="16" Margin="3" FontFamily="Georgia"/>
-        </StackPanel>
+                <Button x:Name="btnSignIn" Template="{StaticResource Submit}" Content="Submit"
+                    Margin="3"/>
+            </StackPanel>
 
-    </Grid>
+        </Grid>
+    </Border>
+
+
 </Window>

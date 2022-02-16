@@ -23,5 +23,16 @@ namespace EquipmentRentalHouse
         {
             InitializeComponent();
         }
+
+        private void brdBorder_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

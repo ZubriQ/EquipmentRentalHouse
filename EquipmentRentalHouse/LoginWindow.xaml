@@ -10,7 +10,7 @@
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
-    <Border Background="#398AB9" CornerRadius="8">
+    <Border CornerRadius="8">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
@@ -32,8 +32,15 @@
                         Grid.Column="1" Template="{StaticResource Close}" Click="btnClose_Click"/>
                 </Grid>
             </Border>
-
-            <DockPanel Grid.Row="1" Background="#1C658C" Grid.ColumnSpan="2"/>
+            <!-- Background="#1C658C" -->
+            <DockPanel Grid.Row="1"  Grid.ColumnSpan="2">
+                <DockPanel.Background>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,4">
+                        <GradientStop Color="#1C658C" Offset="0.60"/>
+                        <GradientStop Color="#90C1DD" Offset="1"/>
+                    </LinearGradientBrush>
+                </DockPanel.Background>
+            </DockPanel>
             <Label Grid.Row="1" Content="LOGIN" FontFamily="Fonts/#Dosis"
                HorizontalAlignment="Center" VerticalAlignment="Bottom"
                Foreground="White" FontSize="22" Grid.ColumnSpan="2" Margin="0,0,0,7" />
@@ -75,6 +82,14 @@
             </StackPanel>
 
         </Grid>
+
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#1C658C" />
+                <GradientStop Color="#5A9FC8" Offset="0.74"/>
+                <GradientStop Color="#90C1DD" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
     </Border>
 
 

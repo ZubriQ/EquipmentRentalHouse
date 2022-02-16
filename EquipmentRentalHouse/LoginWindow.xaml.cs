@@ -34,5 +34,20 @@ namespace EquipmentRentalHouse
         {
             Close();
         }
+
+        private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtUsername.Text == "")
+                tbUsernamePlaceholder.Text = "username";
+            else tbUsernamePlaceholder.Text = "";
+
+        }
+
+        private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (pbPassword.Password == "")
+                tbPasswordPlaceholder.Text = "password";
+            else tbPasswordPlaceholder.Text = "";
+        }
     }
 }

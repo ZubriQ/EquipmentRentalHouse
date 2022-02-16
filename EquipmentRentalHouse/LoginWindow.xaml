@@ -32,11 +32,10 @@
                         Grid.Column="1" Template="{StaticResource Close}" Click="btnClose_Click"/>
                 </Grid>
             </Border>
-            <!-- Background="#1C658C" -->
             <DockPanel Grid.Row="1"  Grid.ColumnSpan="2">
                 <DockPanel.Background>
-                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,4">
-                        <GradientStop Color="#1C658C" Offset="0.60"/>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="1,5">
+                        <GradientStop Color="#1C658C" Offset="0.58"/>
                         <GradientStop Color="#90C1DD" Offset="1"/>
                     </LinearGradientBrush>
                 </DockPanel.Background>
@@ -51,8 +50,6 @@
             #D8D2CB
             #EEEEEE
             -->
-            <!-- TODO: Templates -->
-            <!-- TODO: Placeholders -->
             <StackPanel Grid.Row="2" Margin="40,20,40,0" Grid.ColumnSpan="2">
                 <DockPanel Margin="3">
                     <Viewbox Width="32" Height="32" >
@@ -60,9 +57,17 @@
                             <Path Fill="#398AB9" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                         </Canvas>
                     </Viewbox>
-                    <TextBox x:Name="tbUsername" BorderBrush="White"
+
+                    <Grid>
+                        <TextBox x:Name="txtUsername" BorderBrush="White"
                          Height="32" VerticalContentAlignment="Center" FontSize="14" 
-                         FontFamily="Georgia"/>
+                         FontFamily="Georgia" TextChanged="txtUsername_TextChanged"/>
+
+                        <TextBlock x:Name="tbUsernamePlaceholder" Text="username" 
+                                   FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
+                                   VerticalAlignment="Center" Margin="3"/>
+                    </Grid>
+                    
                 </DockPanel>
 
                 <DockPanel Margin="3">
@@ -73,8 +78,15 @@
                               Margin="5" Stretch="Fill" Width="20" />
                         </Grid>
                     </Viewbox>
-                    <PasswordBox x:Name="pbPassword" BorderBrush="White" 
+                    
+                    <Grid>
+                        <PasswordBox x:Name="pbPassword" BorderBrush="White" PasswordChanged="pbPassword_PasswordChanged"
                              Height="32"  VerticalContentAlignment="Center" FontSize="14" />
+
+                        <TextBlock x:Name="tbPasswordPlaceholder" Text="password" 
+                                   FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
+                                   VerticalAlignment="Center" Margin="3"/>
+                    </Grid>
                 </DockPanel>
 
                 <Button x:Name="btnSignIn" Template="{StaticResource Submit}" Content="Submit"

@@ -13,11 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EquipmentRentalHouse.Windows.UserControls
+namespace EquipmentRentalHouse.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для UserControlDashboard.xaml
-    /// </summary>
     public partial class Dashboard : UserControl
     {
         public Dashboard()

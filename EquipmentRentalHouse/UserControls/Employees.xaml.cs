@@ -13,24 +13,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EquipmentRentalHouse
+namespace EquipmentRentalHouse.UserControls
 {
-    public partial class MainWindow : Window
+    /// <summary>
+    /// Логика взаимодействия для Employees.xaml
+    /// </summary>
+    public partial class Employees : UserControl
     {
-        public MainWindow()
+        public Employees()
         {
             InitializeComponent();
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Close();
-        }
-
-        private void brdHeader_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.LeftButton == MouseButtonState.Pressed)
-                DragMove();
+            if (txtSearch.Text == "")
+                tbSearchPlaceholder.Text = "search";
+            else tbSearchPlaceholder.Text = "";
         }
     }
 }

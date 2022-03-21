@@ -1,0 +1,83 @@
+﻿<Window x:Class="EquipmentRentalHouse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EquipmentRentalHouse"
+        xmlns:dash="clr-namespace:EquipmentRentalHouse.Windows.UserControls"
+        mc:Ignorable="d"
+        Title="Equipment Rental House" Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Border CornerRadius="8,8,0,0" Background="#165170">
+                <Grid x:Name="gridHeader" MouseDown="gridHeader_MouseDown">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.RowSpan="2" Content="Equipment Rental House" Foreground="White" FontFamily="Fonts/#Cinzel"
+                           VerticalAlignment="Center" Margin="30,10,10,10" FontSize="26"/>
+                    <Button x:Name="btnClose"
+                        Grid.Column="1" Template="{StaticResource Close}" Click="btnClose_Click"
+                        Width="28" Height="28"/>
+                    <Border Grid.Column="1" Grid.Row="1" Height="30"></Border>
+                </Grid>
+            </Border>
+
+
+            <Border Background="#165170" BorderBrush="#165170" BorderThickness="1" Grid.Row="1" CornerRadius="0,0,8,8">
+                <TabControl x:Name="tbcTabControl">
+                    <TabItem Header="Home" >
+                        <dash:Dashboard x:Name="ucDashboard"/>
+                    </TabItem>
+
+                    <TabItem Header="SKU">
+                        
+                    </TabItem>
+
+                    <TabItem Header="Clients">
+
+                    </TabItem>
+
+                    <TabItem Header="Employees">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <DockPanel>
+                                
+                            </DockPanel>
+                        </Grid>
+                    </TabItem>
+                    
+                    <TabItem Header="Catalogue">
+
+                    </TabItem>
+
+                    <TabItem Header="Help">
+
+                    </TabItem>
+                </TabControl>
+            </Border>
+
+        </Grid>
+    </Border>
+</Window>

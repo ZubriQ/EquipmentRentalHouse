@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EquipmentRentalHouse
+namespace EquipmentRentalHouse.Windows.UserControls
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для UserControlDashboard.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Dashboard : UserControl
     {
-        public MainWindow()
+        public Dashboard()
         {
             InitializeComponent();
         }

@@ -53,15 +53,15 @@
             <StackPanel Grid.Row="2" Margin="40,20,40,0" Grid.ColumnSpan="2">
                 <DockPanel Margin="3">
                     <Viewbox Width="32" Height="32" >
-                        <Canvas Width="24" Height="24" Background="#D8D2CB">
+                        <Canvas Width="24" Height="24" Background="#E4E0DB">
                             <Path Fill="#398AB9" Data="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                         </Canvas>
                     </Viewbox>
 
                     <Grid>
                         <TextBox x:Name="txtUsername" BorderBrush="White"
-                         Height="32" VerticalContentAlignment="Center" FontSize="14" 
-                         FontFamily="Georgia" TextChanged="txtUsername_TextChanged"/>
+                         Height="32" VerticalContentAlignment="Center" FontSize="16" 
+                         TextChanged="txtUsername_TextChanged" MaxLength="16"/>
 
                         <TextBlock x:Name="tbUsernamePlaceholder" Text="username" 
                                    FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
@@ -72,7 +72,7 @@
 
                 <DockPanel Margin="3">
                     <Viewbox Width="32" Height="32">
-                        <Grid Width="30" Height="30" Background="#D8D2CB">
+                        <Grid Width="30" Height="30" Background="#E4E0DB">
                             <Path Fill="#398AB9" HorizontalAlignment="Center" VerticalAlignment="Center"
                               Data="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
                               Margin="5" Stretch="Fill" Width="20" />
@@ -81,7 +81,7 @@
                     
                     <Grid>
                         <PasswordBox x:Name="pbPassword" BorderBrush="White" PasswordChanged="pbPassword_PasswordChanged"
-                             Height="32"  VerticalContentAlignment="Center" FontSize="14" />
+                             Height="32"  VerticalContentAlignment="Center" FontSize="14" MaxLength="16"/>
 
                         <TextBlock x:Name="tbPasswordPlaceholder" Text="password" 
                                    FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
@@ -90,7 +90,7 @@
                 </DockPanel>
 
                 <Button x:Name="btnSignIn" Template="{StaticResource Submit}" Content="Submit"
-                    Margin="3"/>
+                    Margin="3" Click="btnSignIn_Click"/>
             </StackPanel>
 
         </Grid>

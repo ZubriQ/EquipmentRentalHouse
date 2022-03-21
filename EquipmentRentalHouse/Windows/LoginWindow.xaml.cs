@@ -14,11 +14,23 @@ using System.Windows.Shapes;
 
 namespace EquipmentRentalHouse
 {
-    /// <summary>
-    /// Логика взаимодействия для LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
+        public string Username
+        {
+            get
+            {
+                return txtUsername.Text.Trim();
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return pbPassword.Password.Trim();
+            }
+        }
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -40,7 +52,6 @@ namespace EquipmentRentalHouse
             if (txtUsername.Text == "")
                 tbUsernamePlaceholder.Text = "username";
             else tbUsernamePlaceholder.Text = "";
-
         }
 
         private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
@@ -48,6 +59,13 @@ namespace EquipmentRentalHouse
             if (pbPassword.Password == "")
                 tbPasswordPlaceholder.Text = "password";
             else tbPasswordPlaceholder.Text = "";
+        }
+
+        private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow window = new MainWindow();
+            window.Show();
+            Close();
         }
     }
 }

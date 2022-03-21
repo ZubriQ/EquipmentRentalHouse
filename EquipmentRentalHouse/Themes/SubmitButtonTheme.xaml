@@ -3,20 +3,60 @@
 
     <ControlTemplate TargetType="Button" x:Key="Submit" >
         <Border x:Name="btnSubmit" 
-                    BorderThickness="0" Background="#D8D2CB" Height="32">
+                    BorderThickness="0" Height="32">
 
             <ContentControl Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                Foreground="White" FontSize="18" FontFamily="Fonts/#Dosis" />
-        </Border>
-        
-        <ControlTemplate.Triggers>
-            <Trigger Property="IsMouseOver" Value="true">
-                <Setter TargetName="btnSubmit" Property="Background" Value="#ADA9A3"/>
-            </Trigger>
+                                Foreground="White" FontSize="16" FontFamily="Fonts/#Dosis" FontWeight="DemiBold" />
 
-            <Trigger Property="IsPressed" Value="true">
-                <Setter TargetName="btnSubmit" Property="Background" Value="#827E7A"/>
+            <!-- Animations. -->
+            <Border.Background>
+                <!-- Default state. -->
+                <SolidColorBrush x:Name="BorderColor" Color="#C3BEB7" />
+            </Border.Background>
+            
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="MouseOver">
+                        <Storyboard>
+                            <!-- When mousing over. -->
+                            <!--<ColorAnimation Storyboard.TargetName="BorderColor"
+                                    Storyboard.TargetProperty="Color" To="#ADA9A3" />-->
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderColor"
+                                                          Storyboard.TargetProperty="Color" FillBehavior="HoldEnd">
+                                <ColorAnimationUsingKeyFrames.KeyFrames>
+                                    <LinearColorKeyFrame Value="#DDD7D1" KeyTime="0:0:0.2"/>
+                                </ColorAnimationUsingKeyFrames.KeyFrames>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState Name="Normal">
+                        <Storyboard>
+                            <!-- Default state. -->
+                            <ColorAnimation Storyboard.TargetName="BorderColor"
+                                    Storyboard.TargetProperty="Color" To="#C3BEB7" />
+                        </Storyboard>
+                    </VisualState>
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition From="MouseOver" To="Normal">
+                            <Storyboard>
+                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderColor"
+                                            Storyboard.TargetProperty="Color" FillBehavior="HoldEnd">
+                                    <ColorAnimationUsingKeyFrames.KeyFrames>
+                                        <LinearColorKeyFrame Value="#DDD7D1" KeyTime="0:0:0.001" />
+                                    </ColorAnimationUsingKeyFrames.KeyFrames>
+                                </ColorAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </Border>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Foreground" Value="Gray"/>
+                <Setter TargetName="btnSubmit" Property="Background" Value="LightGray"/>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

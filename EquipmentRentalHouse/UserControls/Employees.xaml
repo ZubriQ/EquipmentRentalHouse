@@ -15,11 +15,14 @@
         <DockPanel HorizontalAlignment="Left">
             <DockPanel HorizontalAlignment="Left">
                 <Button x:Name="btnAdd" Template="{StaticResource Submit}" Content="Add"
-                    Margin="5" Width="80" Height="28"/>
+                    Margin="5" Width="80" Height="28" Click="btnAdd_Click"
+                        />
                 <Button x:Name="btnEdit" Template="{StaticResource Submit}" Content="Edit"
-                    Margin="5" Width="80" Height="28"/>
-                <Button x:Name="btnRemove" Template="{StaticResource Submit}" Content="Remove"
-                    Margin="5" Width="80" Height="28"/>
+                    Margin="5" Width="80" Height="28" Click="btnEdit_Click"
+                        />
+                <Button x:Name="btnDismiss" Template="{StaticResource Submit}" Content="Dismiss"
+                    Margin="5" Width="80" Height="28" Click="btnDismiss_Click"
+                        />
             </DockPanel>
 
         </DockPanel>
@@ -29,7 +32,7 @@
             <DockPanel Height="38">
 
                 <Button x:Name="btnDoubleLeftArrow" HorizontalAlignment="Left" Background="Transparent"
-                                            BorderBrush="Transparent" ToolTip="Scroll." >
+                                            BorderBrush="Transparent" ToolTip="Scroll." Click="btnDoubleLeftArrow_Click" >
                     <Viewbox>
                         <Canvas Width="24" Height="24" Margin="2">
                             <Path Data="M20,5V19L13,12M6,5V19H4V5M13,5V19L6,12" Fill="#398AB9" />
@@ -38,7 +41,7 @@
                 </Button>
 
                 <Button x:Name="btnLeftArrow" HorizontalAlignment="Left" Background="Transparent"
-                                            BorderBrush="Transparent" ToolTip="Scroll." Margin="5,0,0,0" >
+                                            BorderBrush="Transparent" ToolTip="Scroll." Margin="5,0,0,0" Click="btnLeftArrow_Click" >
                     <Viewbox>
                         <Canvas Width="24" Height="24" Margin="2">
                             <Path Data="M6,18V6H8V18H6M9.5,12L18,6V18L9.5,12Z" Fill="#398AB9" />
@@ -47,7 +50,7 @@
                 </Button>
 
                 <Button x:Name="btnRightArrow" HorizontalAlignment="Left" Background="Transparent"
-                                            BorderBrush="Transparent" ToolTip="Scroll." Margin="5,0,0,0">
+                                            BorderBrush="Transparent" ToolTip="Scroll." Margin="5,0,0,0" Click="btnRightArrow_Click">
                     <Viewbox>
                         <Canvas Width="24" Height="24" Margin="2">
                             <Path Data="M16,18H18V6H16M6,18L14.5,12L6,6V18Z"  Fill="#398AB9" />
@@ -56,7 +59,7 @@
                 </Button>
 
                 <Button x:Name="btnDoubleRightArrow" HorizontalAlignment="Left" Background="Transparent"
-                                            BorderBrush="Transparent" ToolTip="Scroll." Margin="5,0,0,0">
+                                            BorderBrush="Transparent" ToolTip="Scroll." Margin="5,0,0,0" Click="btnDoubleRightArrow_Click">
                     <Viewbox>
                         <Canvas Width="24" Height="24" Margin="2">
                             <Path Data="M4,5V19L11,12M18,5V19H20V5M11,5V19L18,12"  Fill="#398AB9" />
@@ -85,17 +88,38 @@
                                                 Height="32" VerticalContentAlignment="Center" FontSize="16" 
                                                 TextChanged="txtSearch_TextChanged" MaxLength="16" Width="150"/>
 
-                        <TextBlock x:Name="tbSearchPlaceholder" Text="search" 
+                        <TextBlock x:Name="tbSearchPlaceholder" Text="search by full name" 
                                                 FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
                                                 VerticalAlignment="Center" Margin="3"/>
                     </Grid>
+
+                    <DockPanel>
+                        <CheckBox x:Name="chkShowDismissed" VerticalContentAlignment="Center"
+                            Content="dismissed staff" FontFamily="Georgia"
+                            VerticalAlignment="Center" Margin="5,0,0,0" FontSize="14"
+                                  Checked="chkShowDismissed_Checked" Unchecked="chkShowDismissed_Unchecked"/>
+                    </DockPanel>
 
                 </DockPanel>
             </DockPanel>
         </Grid>
 
-        <DataGrid Grid.Row="2" Margin="3" x:Name="dgEmployees">
-
+        <DataGrid Grid.Row="2" Margin="2" x:Name="dgEmployees" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First name" Binding="{Binding Path=FirstName}" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Path=Surname}" />
+                <DataGridTextColumn Header="Patronymic" Binding="{Binding Path=Patronymic}" />
+                <DataGridTextColumn Header="Gender" Binding="{Binding Path=Gender}" />
+                <DataGridTextColumn Header="Date of birth" Binding="{Binding Path=DateOfBirth, StringFormat=dd.MM.yyyy}" />
+                <DataGridTextColumn Header="Position" Binding="{Binding Path=Position.Name}" />
+                <DataGridTextColumn Header="Salary increase" Binding="{Binding Path=SalaryIncrease, StringFormat=F2}" />
+                <DataGridTextColumn Header="Street" Binding="{Binding Path=Street.Name}" />
+                <DataGridTextColumn Header="Building" Binding="{Binding Path=Building}" />
+                <DataGridTextColumn Header="Apartment" Binding="{Binding Path=Apartment}"/>
+                <DataGridTextColumn x:Name="dgtxtclDateOfDismissal" 
+                                    Header="Date of dismissal" Binding="{Binding Path=DateOfDismissal}" 
+                                    Visibility="Hidden" Width="*"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EquipmentRentalHouse.Database;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -8,10 +9,10 @@ using System.Windows;
 
 namespace EquipmentRentalHouse
 {
-    /// <summary>
-    /// Логика взаимодействия для App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        public static ERHEntities DB = new ERHEntities();
+
+        public User User { get; set; } // Current user.
     }
 }

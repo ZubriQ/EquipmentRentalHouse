@@ -41,8 +41,8 @@
 
             <Border Background="#165170" BorderBrush="#165170" BorderThickness="2" Grid.Row="1">
                 <TabControl x:Name="tbcTabControl" Background="AliceBlue">
-                    <TabItem Header="Home" >
-                        <userControls:Dashboard x:Name="ucDashboard"/>
+                    <TabItem Header="Home">
+                        <userControls:Dashboard x:Name="ucDashboard" />
                     </TabItem>
 
                     <TabItem Header="SKU">

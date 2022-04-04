@@ -35,8 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,10 +64,65 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Database\Client.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Device.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\EmploymentHistory.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ERHModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERHModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ERHModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ERHModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ERHModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Manufacturer.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Object.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\ObjectsUser.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Order.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Position.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Staff.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\StockKeepingUnit.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\Street.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Database\User.cs">
+      <DependentUpon>ERHModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
     <Page Include="UserControls\Employees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Employees\StaffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,6 +140,9 @@
     </Compile>
     <Compile Include="UserControls\Employees.xaml.cs">
       <DependentUpon>Employees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Employees\StaffWindow.xaml.cs">
+      <DependentUpon>StaffWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -124,6 +191,14 @@
     <Resource Include="Fonts\Cinzel-Regular.otf" />
     <Resource Include="Fonts\CinzelDecorative-Regular.otf" />
     <Resource Include="Fonts\Dosis-Regular.ttf" />
+    <EntityDeploy Include="Database\ERHModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ERHModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Database\ERHModel.edmx.diagram">
+      <DependentUpon>ERHModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,13 +208,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Controls\" />
     <Folder Include="Images\" />
-    <Folder Include="Windows\Pages\Catalogue\" />
-    <Folder Include="Windows\Pages\Clients\" />
-    <Folder Include="Windows\Pages\Dashboard\" />
-    <Folder Include="Windows\Pages\Help\" />
-    <Folder Include="Windows\Pages\SKU\" />
-    <Folder Include="Windows\Pages\Staff\" />
+    <Folder Include="Windows\Catalogue\" />
+    <Folder Include="Windows\Clients\" />
+    <Folder Include="Windows\Dashboard\" />
+    <Folder Include="Windows\Help\" />
+    <Folder Include="Windows\SKU\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\ERHModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ERHModel.Context.cs</LastGenOutput>
+      <DependentUpon>ERHModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Database\ERHModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ERHModel.edmx</DependentUpon>
+      <LastGenOutput>ERHModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9af6e565e96845c5bc49cb420dc498b7" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="ERHModel.Client" Width="1.5" PointX="3" PointY="8.625" />
+        <EntityTypeShape EntityType="ERHModel.Device" Width="1.5" PointX="0.75" PointY="5.625" />
+        <EntityTypeShape EntityType="ERHModel.EmploymentHistory" Width="1.5" PointX="10.25" PointY="8.625" />
+        <EntityTypeShape EntityType="ERHModel.Manufacturer" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="ERHModel.Object" Width="1.5" PointX="7.75" PointY="1.375" />
+        <EntityTypeShape EntityType="ERHModel.ObjectsUser" Width="1.5" PointX="10" PointY="1" />
+        <EntityTypeShape EntityType="ERHModel.Order" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="ERHModel.Position" Width="1.5" PointX="5.75" PointY="7.875" />
+        <EntityTypeShape EntityType="ERHModel.Staff" Width="1.5" PointX="8" PointY="7.75" />
+        <EntityTypeShape EntityType="ERHModel.StockKeepingUnit" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="ERHModel.Street" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="ERHModel.User" Width="1.5" PointX="7.75" PointY="4.375" />
+        <AssociationConnector Association="ERHModel.FK_Clients_Streets" />
+        <AssociationConnector Association="ERHModel.FK_Orders_Clients1" />
+        <AssociationConnector Association="ERHModel.FK_StockKeepingUnits_Devices" />
+        <AssociationConnector Association="ERHModel.FK_EmploymentHistory_Positions" />
+        <AssociationConnector Association="ERHModel.FK_EmploymentHistory_Staff" />
+        <AssociationConnector Association="ERHModel.FK_StockKeepingUnits_Manufacturers" />
+        <AssociationConnector Association="ERHModel.FK_ObjectsUsers_Objects" />
+        <AssociationConnector Association="ERHModel.FK_ObjectsUsers_Users" />
+        <AssociationConnector Association="ERHModel.FK_Orders_StockKeepingUnits1" />
+        <AssociationConnector Association="ERHModel.FK_Staff_Positions" />
+        <AssociationConnector Association="ERHModel.FK_Staff_Streets" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

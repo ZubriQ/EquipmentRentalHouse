@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\Employees\EmploymentHistoryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Employees\StaffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +144,9 @@
     </Compile>
     <Compile Include="UserControls\Employees.xaml.cs">
       <DependentUpon>Employees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Employees\EmploymentHistoryWindow.xaml.cs">
+      <DependentUpon>EmploymentHistoryWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Employees\StaffWindow.xaml.cs">
       <DependentUpon>StaffWindow.xaml</DependentUpon>

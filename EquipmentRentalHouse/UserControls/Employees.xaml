@@ -23,6 +23,9 @@
                 <Button x:Name="btnDismiss" Template="{StaticResource Submit}" Content="Dismiss"
                     Margin="5" Width="80" Height="28" Click="btnDismiss_Click"
                         />
+                <Button x:Name="btnUpdate" Template="{StaticResource Submit}" Content="Update"
+                    Margin="5" Width="80" Height="28" Click="btnUpdate_Click"
+                        />
             </DockPanel>
 
         </DockPanel>
@@ -68,9 +71,9 @@
                 </Button>
 
                 <Button x:Name="btnEmploymentHistory" HorizontalAlignment="Left"
-                                            Background="Transparent" BorderBrush="Transparent" ToolTip="Employment history." Margin="5,0,0,0">
+                                            Background="Transparent" BorderBrush="Transparent" ToolTip="Employment history." Margin="5,0,0,0" Click="btnEmploymentHistory_Click">
                     <Viewbox>
-                        <Canvas Width="24" Height="24" Margin="2">
+                        <Canvas Width="24" Height="24" Margin="2" RenderTransformOrigin="0.607,0.607">
                             <Path Fill="#398AB9" Data="M18 2H12V9L9.5 7.5L7 9V2H6A2 2 0 0 0 4 4V20A2 2 0 0 0 6 22H18A2 2 0 0 0 20 20V4A2 2 0 0 0 18 2M14 12A2 2 0 1 1 12 14A2 2 0 0 1 14 12M18 20H10V19C10 17.67 12.67 17 14 17S18 17.67 18 19Z" />
                         </Canvas>
                     </Viewbox>
@@ -104,7 +107,7 @@
             </DockPanel>
         </Grid>
 
-        <DataGrid Grid.Row="2" Margin="2" x:Name="dgEmployees" AutoGenerateColumns="False">
+        <DataGrid Grid.Row="2" Margin="2" x:Name="dgEmployees" AutoGenerateColumns="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="First name" Binding="{Binding Path=FirstName}" />
                 <DataGridTextColumn Header="Surname" Binding="{Binding Path=Surname}" />

@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace EquipmentRentalHouse.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для Employees.xaml
-    /// </summary>
     public partial class Employees : UserControl
     {
         List<Staff> _staff;
@@ -37,7 +34,7 @@ namespace EquipmentRentalHouse.UserControls
         #region Add, Edit, Dismiss controls
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            StaffWindow window = new StaffWindow();
+            StaffAddEditWindow window = new StaffAddEditWindow();
             window.ShowDialog();
         }
 
@@ -46,7 +43,7 @@ namespace EquipmentRentalHouse.UserControls
             if (dgEmployees.SelectedItem != null)
             {
                 var employee = dgEmployees.SelectedItem as Staff;
-                StaffWindow window = new StaffWindow(employee);
+                StaffAddEditWindow window = new StaffAddEditWindow(employee);
                 window.ShowDialog();
             }
         }

@@ -33,7 +33,7 @@ namespace EquipmentRentalHouse.Windows.Employees
             lblSurname.Content = _employee.Surname;
             lblPatronymic.Content = _employee.Patronymic;
             _employmentHistories = App.DB.EmploymentHistories.Where(x => x.Id == _employee.Id).ToList();
-            dgEmployees.ItemsSource = _employmentHistories;
+            dgEmploymentHistory.ItemsSource = _employmentHistories;
         }
 
         private void brdBorder_MouseDown(object sender, MouseButtonEventArgs e)
@@ -46,5 +46,50 @@ namespace EquipmentRentalHouse.Windows.Employees
         {
             Close();
         }
+
+
+        #region Controls
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            EmploymentHistoryAddEditWindow w = new EmploymentHistoryAddEditWindow(_employee.Id);
+            w.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            var eh = dgEmploymentHistory.SelectedItem as EmploymentHistory;
+            if (eh != null)
+            {
+                EmploymentHistoryAddEditWindow w = new EmploymentHistoryAddEditWindow(eh);
+                w.ShowDialog();
+            }
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var eh = dgEmploymentHistory.SelectedItem as EmploymentHistory;
+            if (eh != null)
+            {
+                if (MessageBox.Show("Remove the selected employment history?", "Removing",
+                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    App.DB.EmploymentHistories.Remove(eh);
+                    App.DB.SaveChanges();
+                    MessageBox.Show("The history has successfully been removed.");
+                }
+            }
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateDataGrid();
+        }
+
+        public void UpdateDataGrid()
+        {
+            _employmentHistories = App.DB.EmploymentHistories.ToList();
+            dgEmploymentHistory.ItemsSource = _employmentHistories.ToArray().OrderBy(x => x.DateOfOrder);
+        }
+        #endregion
     }
 }

@@ -59,10 +59,10 @@
         </EntityType>
         <EntityType Name="ObjectsUsers">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserLogin" />
             <PropertyRef Name="ObjectId" />
           </Key>
-          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserLogin" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="ObjectId" Type="int" Nullable="false" />
           <Property Name="C" Type="bit" Nullable="false" />
           <Property Name="R" Type="bit" Nullable="false" />
@@ -126,11 +126,10 @@
         </EntityType>
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Login" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <Association Name="FK_Clients_Streets">
           <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
@@ -185,10 +184,10 @@
           <End Role="ObjectsUsers" Type="Self.ObjectsUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Login" />
             </Principal>
             <Dependent Role="ObjectsUsers">
-              <PropertyRef Name="UserId" />
+              <PropertyRef Name="UserLogin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -445,10 +444,10 @@
         </EntityType>
         <EntityType Name="ObjectsUser">
           <Key>
-            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserLogin" />
             <PropertyRef Name="ObjectId" />
           </Key>
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="ObjectId" Type="Int32" Nullable="false" />
           <Property Name="C" Type="Boolean" Nullable="false" />
           <Property Name="R" Type="Boolean" Nullable="false" />
@@ -526,11 +525,10 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Login" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ObjectsUsers" Relationship="ERHModel.FK_ObjectsUsers_Users" FromRole="User" ToRole="ObjectsUser" />
         </EntityType>
         <Association Name="FK_Clients_Streets">
@@ -622,10 +620,10 @@
           <End Type="ERHModel.ObjectsUser" Role="ObjectsUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="Login" />
             </Principal>
             <Dependent Role="ObjectsUser">
-              <PropertyRef Name="UserId" />
+              <PropertyRef Name="UserLogin" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -665,7 +663,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -736,7 +734,7 @@
                 <ScalarProperty Name="R" ColumnName="R" />
                 <ScalarProperty Name="C" ColumnName="C" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -804,7 +802,6 @@
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

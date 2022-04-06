@@ -15,7 +15,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition/>
+                <RowDefinition Height="390"/>
             </Grid.RowDefinitions>
 
             <!-- Header -->
@@ -56,12 +56,13 @@
                     <TabItem Header="Employees">
                         <userControls:Employees x:Name="ucEmployees"/>
                     </TabItem>
-                    
-                    <TabItem Header="Catalogue">
 
+
+                    <TabItem Header="Catalogue" >
+                        <userControls:Catalogues x:Name="ucCatalogues"/>
                     </TabItem>
 
-                    <TabItem Header="Help">
+                    <TabItem Header="Misc">
 
                     </TabItem>
                 </TabControl>

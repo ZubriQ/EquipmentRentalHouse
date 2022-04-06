@@ -1,13 +1,11 @@
-﻿<Window x:Class="EquipmentRentalHouse.Windows.Employees.EmploymentHistoryWindow"
+﻿<Window x:Class="EquipmentRentalHouse.Windows.Catalogue.CatalogueWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.Employees"
-        xmlns:userControls="clr-namespace:EquipmentRentalHouse.UserControls"
+        xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.Catalogue"
         mc:Ignorable="d"
-        Title="EmploymentHistoryWindow" Height="450" Width="800"
-        ResizeMode="NoResize"
+        Title="CatalogueWindow" Height="450" Width="370"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
@@ -28,7 +26,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Label x:Name="lblTitle"
-                           Content="Rental Equipment House - Employment history" Foreground="White" FontFamily="Fonts/#Cinzel"
+                           Content="Title" Foreground="White" FontFamily="Fonts/#Cinzel"
                            VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
 
                     <Button x:Name="btnClose"
@@ -43,28 +41,6 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <Grid HorizontalAlignment="Center" Margin="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <DockPanel >
-                        <Label x:Name="lblSurname"
-                        Content="Surname" Foreground="White" FontFamily="Fonts/#Cinzel"
-                       VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-                        <Label x:Name="lblFirstname" 
-                        Content="Firstname" Foreground="White" FontFamily="Fonts/#Cinzel"
-                       VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-                        <Label x:Name="lblPatronymic"
-                        Content="Patronymic" Foreground="White" FontFamily="Fonts/#Cinzel"
-                       VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
-                        
-                    </DockPanel>
-
-                    <Border Grid.Row="1" BorderBrush="#1C658C" BorderThickness="0.5" DockPanel.Dock="Bottom"></Border>
-                </Grid>
-
                 <Grid Grid.Row="1" Margin="4" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -73,29 +49,27 @@
                     <Border Background="AliceBlue" Margin="1,1,1,0"/>
 
                     <DockPanel HorizontalAlignment="Left" Margin="1">
-                        <DockPanel HorizontalAlignment="Left">
+                        <DockPanel HorizontalAlignment="Stretch">
                             <Button x:Name="btnAdd" Template="{StaticResource Submit}" Content="Add"
                     Margin="5" Width="80" Height="28" Click="btnAdd_Click"
                         />
                             <Button x:Name="btnEdit" Template="{StaticResource Submit}" Content="Edit"
-                    Margin="5" Width="80" Height="28" Click="btnEdit_Click" 
+                    Margin="5" Width="80" Height="28" Click="btnEdit_Click"
                         />
                             <Button x:Name="btnRemove" Template="{StaticResource Submit}" Content="Remove"
-                    Margin="5" Width="80" Height="28" Click="btnRemove_Click"
+                    Margin="5" Width="80" Height="28" Click="btnRemove_Click" 
                         />
                             <Button x:Name="btnUpdate" Template="{StaticResource Submit}" Content="Update"
-                    Margin="5" Width="80" Height="28" Click="btnUpdate_Click" 
+                    Margin="5" Width="80" Height="28" Click="btnUpdate_Click"
                         />
                         </DockPanel>
 
                     </DockPanel>
 
-                    <DataGrid Grid.Row="1" x:Name="dgEmploymentHistory" AutoGenerateColumns="False" 
+                    <DataGrid Grid.Row="1" x:Name="dgCatalogue" AutoGenerateColumns="False" 
                               IsReadOnly="True" SelectionMode="Single">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Order date" Binding="{Binding DateOfOrder, StringFormat=dd.MM.yyyy}" />
-                            <DataGridTextColumn Header="Position" Binding="{Binding Position.Name}" />
-                            <DataGridTextColumn Header="Reason for transfer" Binding="{Binding ReasonForTransfer}" Width="*"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

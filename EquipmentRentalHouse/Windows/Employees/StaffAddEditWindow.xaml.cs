@@ -18,14 +18,14 @@ namespace EquipmentRentalHouse.Windows.Employees
     /// <summary>
     /// To either add or edit an employee.
     /// </summary>
-    public partial class StaffWindow : Window
+    public partial class StaffAddEditWindow : Window
     {
         private Staff _employee;
 
         private bool _isAdding;
 
         // Editing.
-        public StaffWindow(Staff employee)
+        public StaffAddEditWindow(Staff employee)
         {
             InitializeComponent();
             InitializeComboBoxes();
@@ -33,7 +33,7 @@ namespace EquipmentRentalHouse.Windows.Employees
         }
 
         // Adding.
-        public StaffWindow()
+        public StaffAddEditWindow()
         {
             InitializeComponent();
             InitializeComboBoxes();
@@ -47,6 +47,7 @@ namespace EquipmentRentalHouse.Windows.Employees
             _isAdding = false;
 
             _employee = employee;
+            _employee.DateOfBirth = DateTime.Now;
             DataContext = _employee;
         }
 

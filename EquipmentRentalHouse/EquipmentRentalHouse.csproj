@@ -115,10 +115,29 @@
     <Compile Include="Database\User.cs">
       <DependentUpon>ERHModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Catalogues.xaml.cs">
+      <DependentUpon>Catalogues.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Page Include="UserControls\Catalogues.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Employees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Catalogue\CatalogueAddEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Catalogue\CatalogueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Employees\EmploymentHistoryAddEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,7 +145,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Employees\StaffWindow.xaml">
+    <Page Include="Windows\Employees\StaffAddEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -145,11 +164,21 @@
     <Compile Include="UserControls\Employees.xaml.cs">
       <DependentUpon>Employees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Catalogue\Catalogue.cs" />
+    <Compile Include="Windows\Catalogue\CatalogueAddEditWindow.xaml.cs">
+      <DependentUpon>CatalogueAddEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Catalogue\CatalogueWindow.xaml.cs">
+      <DependentUpon>CatalogueWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Employees\EmploymentHistoryAddEditWindow.xaml.cs">
+      <DependentUpon>EmploymentHistoryAddEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Employees\EmploymentHistoryWindow.xaml.cs">
       <DependentUpon>EmploymentHistoryWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Employees\StaffWindow.xaml.cs">
-      <DependentUpon>StaffWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Employees\StaffAddEditWindow.xaml.cs">
+      <DependentUpon>StaffAddEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
@@ -217,10 +246,9 @@
   <ItemGroup>
     <Folder Include="Controls\" />
     <Folder Include="Images\" />
-    <Folder Include="Windows\Catalogue\" />
     <Folder Include="Windows\Clients\" />
     <Folder Include="Windows\Dashboard\" />
-    <Folder Include="Windows\Help\" />
+    <Folder Include="Windows\Other\" />
     <Folder Include="Windows\SKU\" />
   </ItemGroup>
   <ItemGroup>

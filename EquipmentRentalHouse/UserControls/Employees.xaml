@@ -107,7 +107,8 @@
             </DockPanel>
         </Grid>
 
-        <DataGrid Grid.Row="2" Margin="2" x:Name="dgEmployees" AutoGenerateColumns="False" IsReadOnly="True">
+        <DataGrid Grid.Row="2" Margin="2" x:Name="dgEmployees" AutoGenerateColumns="False" 
+                  IsReadOnly="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="First name" Binding="{Binding Path=FirstName}" />
                 <DataGridTextColumn Header="Surname" Binding="{Binding Path=Surname}" />

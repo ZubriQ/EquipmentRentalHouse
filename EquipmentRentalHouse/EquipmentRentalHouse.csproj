@@ -121,11 +121,18 @@
     <Compile Include="UserControls\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\SKU\SKUAddEditWindow.xaml.cs">
+      <DependentUpon>SKUAddEditWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="UserControls\Catalogues.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Employees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SKU.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +171,9 @@
     <Compile Include="UserControls\Employees.xaml.cs">
       <DependentUpon>Employees.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SKU.xaml.cs">
+      <DependentUpon>SKU.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Catalogue\Catalogue.cs" />
     <Compile Include="Windows\Catalogue\CatalogueAddEditWindow.xaml.cs">
       <DependentUpon>CatalogueAddEditWindow.xaml</DependentUpon>
@@ -200,6 +210,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\SKU\SKUAddEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,7 +263,6 @@
     <Folder Include="Windows\Clients\" />
     <Folder Include="Windows\Dashboard\" />
     <Folder Include="Windows\Other\" />
-    <Folder Include="Windows\SKU\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\ERHModel.Context.tt">

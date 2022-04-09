@@ -15,7 +15,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="60"/>
-                <RowDefinition Height="390"/>
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <!-- Header -->
@@ -46,7 +46,7 @@
                     </TabItem>
 
                     <TabItem Header="SKU">
-                        
+                        <userControls:SKU x:Name="ucSKUs" />
                     </TabItem>
 
                     <TabItem Header="Clients">

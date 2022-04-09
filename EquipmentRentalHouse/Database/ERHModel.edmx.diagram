@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9af6e565e96845c5bc49cb420dc498b7" Name="Diagram1" ZoomLevel="87">
+      <Diagram DiagramId="9af6e565e96845c5bc49cb420dc498b7" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="ERHModel.Client" Width="1.5" PointX="3" PointY="8.625" />
         <EntityTypeShape EntityType="ERHModel.Device" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="ERHModel.EmploymentHistory" Width="1.5" PointX="8" PointY="7.625" />

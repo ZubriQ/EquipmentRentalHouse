@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.Employees"
         mc:Ignorable="d"
-        Title="" Height="270" Width="430"
+        Title="" Height="280" Width="430"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
@@ -64,7 +64,7 @@
                             Content="Reason for transfer:" FontFamily="Georgia" Foreground="White"
                             VerticalAlignment="Top" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="txtReasonForTransfer" BorderBrush="White"
-                         Height="122" VerticalContentAlignment="Center" FontSize="14"
+                         Height="132" VerticalContentAlignment="Top" FontSize="14"
                          HorizontalAlignment="Left" VerticalAlignment="Top" MaxLength="200"
                          Width="242" Text="{Binding ReasonForTransfer}" Margin="5" TextWrapping="Wrap"/>
                 </DockPanel>

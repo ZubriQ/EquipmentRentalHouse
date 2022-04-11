@@ -50,7 +50,7 @@
                     </TabItem>
 
                     <TabItem Header="Clients">
-
+                        <userControls:Clients x:Name="ucClients" />
                     </TabItem>
 
                     <TabItem Header="Employees">

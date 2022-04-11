@@ -54,12 +54,12 @@ namespace EquipmentRentalHouse.UserControls
             if ((employee != null) && (employee.IsDismissed == false))
             {
                 DismissEmployee(employee);
-                UpdateDataGrid();
+                Update();
             }
             else if ((employee != null) && (employee.IsDismissed == true))
             {
                 ReturnDismissedEmployee(employee);
-                UpdateDataGrid();
+                Update();
             }
         }
 
@@ -182,9 +182,9 @@ namespace EquipmentRentalHouse.UserControls
         }
         #endregion
 
-        void UpdateDataGrid()
+        void Update()
         {
-            if (chkShowDismissed.IsChecked == false)
+            if (chkShowDismissed.IsChecked == false) // TODO: Update from App.DB?
                 dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
             else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
         }

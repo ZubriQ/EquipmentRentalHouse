@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="EquipmentRentalHouse.Controls.SKUControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EquipmentRentalHouse.Controls"
+             mc:Ignorable="d">
+    <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" 
+              IsReadOnly="True" SelectionMode="Single" Language="ru-RU">
+        <DataGrid.Columns>
+            <DataGridTextColumn Header="Device" Binding="{Binding Path=Device.Name}" />
+            <DataGridTextColumn Header="Manufacturer" Binding="{Binding Path=Manufacturer.Name}" />
+            <DataGridTextColumn Header="Device price" Binding="{Binding Path=DevicePrice, StringFormat=\{0:C\}}" />
+            <DataGridTextColumn Header="Rental price" Binding="{Binding Path=RentalPrice, StringFormat=\{0:C\}}" />
+            <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" />
+        </DataGrid.Columns>
+    </DataGrid>
+</UserControl>

@@ -7,16 +7,16 @@
              mc:Ignorable="d">
     <StackPanel HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center">
         <Button x:Name="btnDevices" Template="{StaticResource Submit}" Content="Devices"
-                    Margin="5" Width="120" Height="28" Click="btnDevices_Click"
+                Margin="5" Width="120" Height="28" Click="btnDevices_Click"
                         />
         <Button x:Name="btnPositions" Template="{StaticResource Submit}" Content="Positions"
-                    Margin="5" Width="120" Height="28" Click="btnPositions_Click"
+                Margin="5" Width="120" Height="28" Click="btnPositions_Click"
                         />
         <Button x:Name="btnManufacturers" Template="{StaticResource Submit}" Content="Manufacturers"
-                    Margin="5" Width="120" Height="28" Click="btnManufacturers_Click"
+                Margin="5" Width="120" Height="28" Click="btnManufacturers_Click"
                         />
         <Button x:Name="btnStreets" Template="{StaticResource Submit}" Content="Streets"
-                    Margin="5" Width="120" Height="28" Click="btnStreets_Click"
+                Margin="5" Width="120" Height="28" Click="btnStreets_Click"
                         />
     </StackPanel>
 </UserControl>

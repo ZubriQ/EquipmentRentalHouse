@@ -1,0 +1,86 @@
+﻿<Window x:Class="EquipmentRentalHouse.Windows.Clients.RentedDevicesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.Clients"
+        mc:Ignorable="d"
+        Title="RentedDevicesWindow" Height="300" Width="500"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Header. -->
+            <Border x:Name="brd_Border" Background="#165170" CornerRadius="8,8,0,0" 
+                    MouseDown="brd_Border_MouseDown" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="lblTitle"
+                           Content="Rented Devices" Foreground="White" FontFamily="Fonts/#Cinzel"
+                           VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+
+                    <Button x:Name="btn_Close"
+                        Grid.Column="1" Template="{StaticResource Close}" Click="btn_Close_Click"/>
+                </Grid>
+            </Border>
+
+            <!-- Rented Devices. -->
+            <Grid Grid.Row="1" Margin="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <!-- Buttons.-->
+                    <RowDefinition Height="*"/>
+                    <!-- Datagrid. -->
+                    <RowDefinition Height="auto"/>
+                    <!-- Update/Cancel. -->
+                </Grid.RowDefinitions>
+                <DockPanel HorizontalAlignment="Left" >
+                    <Button x:Name="btn_ReturnToStock" Template="{StaticResource Submit}" Content="Return to Stock"
+                    Margin="5" Width="130" Height="28" Click="btn_ReturnToStock_Click" 
+                        />
+                </DockPanel>
+
+                <!-- DG. -->
+                <DataGrid Grid.Row="1" Margin="2" x:Name="dgSKUs" AutoGenerateColumns="False" 
+                          IsReadOnly="True" SelectionMode="Single" Language="ru-RU">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Device" Binding="{Binding Path=Device.Name}" />
+                        <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" />
+                        <DataGridTextColumn Header="Manufacturer" Binding="{Binding Path=Manufacturer.Name}" />
+                        <DataGridTextColumn Header="Device price" Binding="{Binding Path=DevicePrice, StringFormat=\{0:C\}}" />
+                        <DataGridTextColumn Header="Rental price" Binding="{Binding Path=RentalPrice, StringFormat=\{0:C\}}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <!-- Buttons -->
+                <DockPanel  Grid.Row="9" Margin="0,0,0,15" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button x:Name="btn_Update" Template="{StaticResource Submit}" Content="Update"
+                        Margin="5" Width="110" Click="btn_Update_Click"
+                            />
+                    <Button x:Name="btn_Cancel" Template="{StaticResource Submit}" Content="Cancel"
+                        Margin="5" Width="110" Click="btn_Cancel_Click"
+                            />
+                </DockPanel>
+            </Grid>
+        </Grid>
+
+
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#1C658C" />
+                <GradientStop Color="#5A9FC8" Offset="0.74"/>
+                <GradientStop Color="#90C1DD" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
+</Window>

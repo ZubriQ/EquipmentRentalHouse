@@ -1,0 +1,112 @@
+﻿<Window x:Class="EquipmentRentalHouse.Windows.Clients.ClientPassportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.Clients"
+        mc:Ignorable="d"
+        Title="ClientPassportWindow" Height="220" Width="645"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Header. -->
+            <Border x:Name="brdBorder" Background="#165170" CornerRadius="8,8,0,0" 
+                    MouseDown="brdBorder_MouseDown" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="lblTitle"
+                           Content="Equipment Rental House - Passport data" Foreground="White" FontFamily="Fonts/#Cinzel"
+                           VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+
+                    <Button x:Name="btnClose"
+                        Grid.Column="1" Template="{StaticResource Close}" Click="btnClose_Click" HorizontalAlignment="Left" Width="30" />
+                </Grid>
+            </Border>
+
+            <!-- Add/Edit a client. -->
+            <Grid Grid.Row="1" Margin="10" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <!-- Issued by, Issue date, Expiration date -->
+                <DockPanel  Grid.Row="0" HorizontalAlignment="Left"  Margin="5">
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Issued by:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="82"/>
+                    <TextBox x:Name="txtPassportIssuedBy" BorderBrush="White"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         MaxLength="40" Width="110" Text="{Binding PassportIssuedBy}"/>
+
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Issue date:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="77"/>
+                    <DatePicker x:Name="dpPassportDateOfIssue" BorderBrush="White" BorderThickness="2"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         Width="110" SelectedDate="{Binding PassportDateOfIssue}"/>
+
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Expiration date:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="111"/>
+                    <DatePicker x:Name="dpDateOfExpiration" BorderBrush="White" BorderThickness="2"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         Width="110" SelectedDate="{Binding PassportDateOfExpiration}"/>
+                </DockPanel>
+
+                <!-- Code, Number, Birth place -->
+                <DockPanel  Grid.Row="1" HorizontalAlignment="Left"  Margin="5">
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Code:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="82"/>
+                    <TextBox x:Name="txtPassportCode" BorderBrush="White"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         MaxLength="40" Width="110" Text="{Binding PassportCode}"/>
+
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Number:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="77"/>
+                    <TextBox x:Name="txtPassportNumber" BorderBrush="White"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         MaxLength="40" Width="110" Text="{Binding PassportNumber}"/>
+
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Birth place:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="111"/>
+                    <TextBox x:Name="txtPassportPlaceOfBirth" BorderBrush="White"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         MaxLength="40" Width="110" Text="{Binding PassportPlaceOfBirth}"/>
+                </DockPanel>
+
+                <!-- Buttons -->
+                <DockPanel  Grid.Row="2" Margin="15" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button x:Name="btn_Save" Template="{StaticResource Submit}" Content="Save"
+                        Margin="5" Width="110" Click="btn_Save_Click" />
+                    <Button x:Name="btn_Cancel" Template="{StaticResource Submit}" Content="Cancel"
+                        Margin="5" Width="110" Click="btn_Cancel_Click" />
+                </DockPanel>
+            </Grid>
+        </Grid>
+
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#1C658C" />
+                <GradientStop Color="#5A9FC8" Offset="0.74"/>
+                <GradientStop Color="#90C1DD" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
+</Window>

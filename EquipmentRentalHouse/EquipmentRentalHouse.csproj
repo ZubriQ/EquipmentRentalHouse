@@ -127,8 +127,14 @@
     <Compile Include="UserControls\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Clients\ClientPassportWindow.xaml.cs">
+      <DependentUpon>ClientPassportWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Clients\ClientsAddEditWindow.xaml.cs">
       <DependentUpon>ClientsAddEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Clients\RentedDevicesWindow.xaml.cs">
+      <DependentUpon>RentedDevicesWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SKU\SKUAddEditWindow.xaml.cs">
       <DependentUpon>SKUAddEditWindow.xaml</DependentUpon>
@@ -164,7 +170,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\Clients\ClientPassportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Clients\ClientsAddEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Clients\RentedDevicesWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

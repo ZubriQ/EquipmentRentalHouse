@@ -218,6 +218,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
                         <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
 
                     <DockPanel Margin="3" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Right">
@@ -295,7 +296,7 @@
                     </StackPanel>
 
                     <!-- Order title -->
-                    <Grid  Grid.Row="7" HorizontalAlignment="Left" Margin="2">
+                    <Grid Grid.Row="2" HorizontalAlignment="Left" Margin="2">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
@@ -309,6 +310,15 @@
                         </DockPanel>
                         <Border Grid.Row="1" BorderBrush="#1C658C" BorderThickness="0.5" DockPanel.Dock="Bottom"></Border>
                     </Grid>
+
+                    <DockPanel Grid.Row="3">
+                        <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
+                            Content="Rent expiration date:" FontFamily="Georgia" Foreground="White"
+                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right"/>
+                        <DatePicker x:Name="dpRentExpirationDate" BorderBrush="White" BorderThickness="2"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14"  HorizontalAlignment="Left"
+                         Width="120"/>
+                    </DockPanel>
                 </Grid>
 
                 <!-- Buttons -->

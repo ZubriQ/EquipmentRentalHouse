@@ -25,6 +25,18 @@ namespace EquipmentRentalHouse.Windows.Clients
         bool _isAdding;
         decimal _totalPrice;
 
+        public DateTime? RentExpirationDate
+        {
+            get
+            {
+                return dpRentExpirationDate.SelectedDate;
+            }
+            set
+            {
+                dpRentExpirationDate.SelectedDate = value;
+            }
+        }
+
         // Adding.
         public ClientsAddEditWindow()
         {
@@ -87,6 +99,9 @@ namespace EquipmentRentalHouse.Windows.Clients
         void InitializeInitialData()
         {
             cbStreet.ItemsSource = App.DB.Streets.ToArray();
+            RentExpirationDate = DateTime.Now.AddDays(7);
+            dpRentExpirationDate.SelectedDate = RentExpirationDate;
+
         }
 
         void InitializeDataGrids()
@@ -142,6 +157,8 @@ namespace EquipmentRentalHouse.Windows.Clients
                     {
                         App.DB.Clients.Add(_client);
                         App.DB.SaveChanges();
+                        MessageBox.Show($"Rental order has been successfully added.");
+                        Close();
                     }
                     catch { }
                 }
@@ -152,6 +169,8 @@ namespace EquipmentRentalHouse.Windows.Clients
                 {
                     App.DB.Orders.AddRange(Orders);
                     App.DB.SaveChanges();
+                    MessageBox.Show($"Rental order has been successfully changed.");
+                    Close();
                 }
                 catch { }
             }
@@ -200,7 +219,7 @@ namespace EquipmentRentalHouse.Windows.Clients
             {
                 Client = _client,
                 StockKeepingUnit = skuItem,
-                DateOfExpiration = DateTime.Now.AddDays(7),
+                DateOfExpiration = RentExpirationDate.Value, // TODO: if RentExpirationDate > Today
                 DateOfOrder = DateTime.Now,
                 IsReturned = false,
                 ClientId = _client.Id,

@@ -107,11 +107,21 @@ namespace EquipmentRentalHouse.UserControls
         }
         private void btnShowPassport_Click(object sender, RoutedEventArgs e)
         {
-            // open a window
+            var client = dgClients.SelectedItem;
+            if (client is Client)
+            {
+                ClientPassportWindow w = new ClientPassportWindow(client as Client);
+                w.ShowDialog();
+            }
         }
         private void btnShowOrderedItems_Click(object sender, RoutedEventArgs e)
         {
-            // open a window
+            var client = dgClients.SelectedItem;
+            if (client is Client)
+            {
+                RentedDevicesWindow w = new RentedDevicesWindow(client as Client);
+                w.ShowDialog();
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)

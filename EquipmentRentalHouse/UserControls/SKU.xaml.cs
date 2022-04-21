@@ -96,13 +96,17 @@ namespace EquipmentRentalHouse.UserControls
 
         private void btnShowWhoRented_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: open a window
-            //var item = dgSKUs.SelectedItem as StockKeepingUnit;
-            //if (item != null)
-            //{
-            //    w window = new w(item);
-            //    window.ShowDialog();
-            //}
+            var item = dgSKUs.SelectedItem as StockKeepingUnit;
+            if (item != null)
+            {
+                var order = item.Orders.Where(o => o.IsReturned == false).FirstOrDefault();
+                if (order != null)
+                {
+                    var window = new SKUWhoRentedWindow(order);
+                    window.ShowDialog();
+                }
+                else MessageBox.Show("The selected item is in stock.");
+            }
         }
 
         void UpdateDataGrid()

@@ -35,13 +35,13 @@ namespace EquipmentRentalHouse.UserControls
         }
         void ShowPassportData()
         {
-            dgClients.Columns[8].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
-            dgClients.Columns[9].Visibility = Visibility.Visible;
-            dgClients.Columns[10].Visibility = Visibility.Visible;
+            dgClients.Columns[10].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
             dgClients.Columns[11].Visibility = Visibility.Visible;
             dgClients.Columns[12].Visibility = Visibility.Visible;
             dgClients.Columns[13].Visibility = Visibility.Visible;
             dgClients.Columns[14].Visibility = Visibility.Visible;
+            dgClients.Columns[15].Visibility = Visibility.Visible;
+            dgClients.Columns[16].Visibility = Visibility.Visible;
         }
         private void chkShowPassportData_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -49,13 +49,13 @@ namespace EquipmentRentalHouse.UserControls
         }
         void HidePassportData()
         {
-            dgClients.Columns[8].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
-            dgClients.Columns[9].Visibility = Visibility.Hidden;
-            dgClients.Columns[10].Visibility = Visibility.Hidden;
+            dgClients.Columns[10].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
             dgClients.Columns[11].Visibility = Visibility.Hidden;
             dgClients.Columns[12].Visibility = Visibility.Hidden;
             dgClients.Columns[13].Visibility = Visibility.Hidden;
             dgClients.Columns[14].Visibility = Visibility.Hidden;
+            dgClients.Columns[15].Visibility = Visibility.Hidden;
+            dgClients.Columns[16].Visibility = Visibility.Hidden;
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -79,9 +79,10 @@ namespace EquipmentRentalHouse.UserControls
             List<Client> clients = _clients.ToList();
             try
             {
-                dgClients.ItemsSource = clients.Where(s => s.FirstName.ToLower().Contains(search) ||
-                                                           s.Surname.ToLower().Contains(search) ||
-                                                           s.Patronymic.ToLower().Contains(search));
+                dgClients.ItemsSource = clients.Where(s => s.FullName.ToLower().Contains(search));
+                //dgClients.ItemsSource = clients.Where(s => s.FirstName.ToLower().Contains(search) ||
+                //                                           s.Surname.ToLower().Contains(search) ||
+                //                                           s.Patronymic.ToLower().Contains(search));
             }
             catch { }
         }
@@ -119,14 +120,18 @@ namespace EquipmentRentalHouse.UserControls
             var client = dgClients.SelectedItem;
             if (client is Client)
             {
-                RentedDevicesWindow w = new RentedDevicesWindow(client as Client);
-                w.ShowDialog();
+                if ((client as Client).Orders.Count > 0)
+                {
+                    RentedDevicesWindow w = new RentedDevicesWindow(client as Client);
+                    w.ShowDialog();
+                }
+                else MessageBox.Show($"The selected client has no items.");
             }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            ClientsAddEditWindow window = new ClientsAddEditWindow();
+            ClientAddEditWindow window = new ClientAddEditWindow();
             window.ShowDialog();
         }
 
@@ -135,7 +140,7 @@ namespace EquipmentRentalHouse.UserControls
             if (dgClients.SelectedItem != null)
             {
                 var client = dgClients.SelectedItem as Client;
-                ClientsAddEditWindow window = new ClientsAddEditWindow(client);
+                ClientAddEditWindow window = new ClientAddEditWindow(client);
                 window.ShowDialog();
             }
         }

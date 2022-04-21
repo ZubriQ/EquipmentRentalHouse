@@ -19,7 +19,6 @@ namespace EquipmentRentalHouse.Windows.Clients
     {
         Client _client;
         List<Order> _orders;
-        //List<StockKeepingUnit> _skus;
 
         public RentedDevicesWindow(Client client)
         {
@@ -29,9 +28,6 @@ namespace EquipmentRentalHouse.Windows.Clients
 
             _orders = _client.Orders.ToList();
             dgSKUs.ItemsSource = _orders;
-
-            //_skus = App.DB.StockKeepingUnits.Where(order => _orders.Any(s => s.StockKeepingUnitId == order.Id)).ToList();
-            //int k = 0;
         }
 
         private void btn_Close_Click(object sender, RoutedEventArgs e)
@@ -39,6 +35,7 @@ namespace EquipmentRentalHouse.Windows.Clients
             Close();
         }
 
+        // Returning.
         private void btn_ReturnToStock_Click(object sender, RoutedEventArgs e)
         {
             var item = dgSKUs.SelectedItem as Order;
@@ -47,12 +44,33 @@ namespace EquipmentRentalHouse.Windows.Clients
                 if (MessageBox.Show($"Are you sure you want to return the selected item to the stock?", "Returning",
                     MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                 {
-                    item.IsReturned = true;
-                    var sku = App.DB.StockKeepingUnits.Where(s => s.Id == item.StockKeepingUnitId).FirstOrDefault();
-                    sku.IsInStock = true;
+                    SetOrder(item, true, DateTime.Now);
                     UpdateDataGrid();
                 }
             }
+        }
+
+        // Cancel returning.
+        private void btn_CancelReturning_Click(object sender, RoutedEventArgs e)
+        {
+            var item = dgSKUs.SelectedItem as Order;
+            if (item != null)
+            {
+                if (MessageBox.Show($"Are you sure you want to cancel returning of the selected item to the stock?", "Canceling",
+                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    SetOrder(item, false, null);
+                    UpdateDataGrid();
+                }
+            }
+        }
+
+        private void SetOrder(Order item, bool isReturned, DateTime? returnDate)
+        {
+            item.IsReturned = isReturned;
+            item.DateOfReturn = returnDate;
+            item.StockKeepingUnit.IsInStock = isReturned;
+            _client.Orders = _orders;
         }
 
         private void btn_Update_Click(object sender, RoutedEventArgs e)
@@ -85,5 +103,6 @@ namespace EquipmentRentalHouse.Windows.Clients
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
     }
 }

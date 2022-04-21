@@ -14,7 +14,7 @@ namespace EquipmentRentalHouse.Database
     
     public partial class ObjectsUser
     {
-        public string UserLogin { get; set; }
+        public int UserId { get; set; }
         public int ObjectId { get; set; }
         public bool C { get; set; }
         public bool R { get; set; }

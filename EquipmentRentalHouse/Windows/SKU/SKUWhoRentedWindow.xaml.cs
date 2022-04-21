@@ -15,17 +15,30 @@ using System.Windows.Shapes;
 
 namespace EquipmentRentalHouse.Windows.SKU
 {
-    /// <summary>
-    /// Логика взаимодействия для SKUWhoRentedWindow.xaml
-    /// </summary>
     public partial class SKUWhoRentedWindow : Window
     {
-        Client _client;
-        public SKUWhoRentedWindow(Client client)
+        Order _order;
+        public SKUWhoRentedWindow(Order order)
         {
             InitializeComponent();
-            _client = client;
-            DataContext = _client;
+            _order = order;
+            DataContext = _order;
+        }
+
+        private void btn_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void btn_Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void brd_Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

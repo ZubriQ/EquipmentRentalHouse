@@ -5,6 +5,102 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EquipmentRentalHouse.UserControls"
              mc:Ignorable="d">
-    <Label Content="Welcome" HorizontalAlignment="Center" FontFamily="Fonts/#Cinzel"
-                               VerticalAlignment="Center" FontSize="60" Foreground="LightGray"/>
+
+    <Grid>
+        <StackPanel Margin="15">
+            <!-- Employees. -->
+            <StackPanel>
+                <TextBlock Text="Employees" FontFamily="Microsoft Uighur" FontSize="34" Foreground="#398AB9"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Margin="0,-8,0,-5">
+                        <TextBlock Text="Total: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtEmployeesTotal"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                        <TextBlock Text="Hired: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtEmployeesHired"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                        <TextBlock Text="Dismissed: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtDismissedStaff"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                    </DockPanel>
+                    
+                    <Border Grid.Row="1" BorderBrush="#D8D2CB" BorderThickness="0.5" DockPanel.Dock="Bottom"></Border>
+                </Grid>
+                
+            </StackPanel>
+            
+            <!-- Devices. -->
+            <StackPanel>
+                <TextBlock Text="Devices" FontFamily="Microsoft Uighur" FontSize="34" Foreground="#398AB9"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Margin="0,-12,0,-5">
+                        <TextBlock Text="Total: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtDevicesTotal"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                        <TextBlock Text="In stock: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtDevicesInStock"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                        <TextBlock Text="Currently rented: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtDevicesRented"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                    </DockPanel>
+
+                    <Border Grid.Row="1" BorderBrush="#D8D2CB" BorderThickness="0.5" DockPanel.Dock="Bottom"></Border>
+                </Grid>
+               
+            </StackPanel>
+
+            
+
+            <!-- Clients. -->
+            <StackPanel>
+                <TextBlock Text="Clients" FontFamily="Microsoft Uighur" FontSize="34" Foreground="#398AB9"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <DockPanel Margin="0,-12,0,-5">
+                        <TextBlock Text="Total: " FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="5,5,0,5"/>
+                        <TextBlock x:Name="txtClientsTotal"
+                               Text="" FontFamily="Bahnschrift Light" FontSize="14" 
+                               Margin="0,5,5,5"/>
+                    </DockPanel>
+
+                    <Border Grid.Row="1" BorderBrush="#D8D2CB" BorderThickness="0.5" DockPanel.Dock="Bottom"></Border>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>

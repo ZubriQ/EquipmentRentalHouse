@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9af6e565e96845c5bc49cb420dc498b7" Name="Diagram1" ZoomLevel="92">
+      <Diagram DiagramId="9af6e565e96845c5bc49cb420dc498b7" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="ERHModel.Client" Width="1.5" PointX="3" PointY="8.625" />
-        <EntityTypeShape EntityType="ERHModel.Device" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="ERHModel.EmploymentHistory" Width="1.5" PointX="8" PointY="7.625" />
-        <EntityTypeShape EntityType="ERHModel.Manufacturer" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="ERHModel.Device" Width="1.5" PointX="0.75" PointY="1.625" />
+        <EntityTypeShape EntityType="ERHModel.EmploymentHistory" Width="1.5" PointX="10.25" PointY="8.625" />
+        <EntityTypeShape EntityType="ERHModel.Manufacturer" Width="1.5" PointX="0.75" PointY="5.625" />
         <EntityTypeShape EntityType="ERHModel.Object" Width="1.5" PointX="7.75" PointY="1.375" />
         <EntityTypeShape EntityType="ERHModel.ObjectsUser" Width="1.5" PointX="10" PointY="1" />
-        <EntityTypeShape EntityType="ERHModel.Order" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="ERHModel.Order" Width="1.5" PointX="5.25" PointY="1.125" />
         <EntityTypeShape EntityType="ERHModel.Position" Width="1.5" PointX="5.75" PointY="7.875" />
-        <EntityTypeShape EntityType="ERHModel.Staff" Width="1.5" PointX="8" PointY="10.75" />
+        <EntityTypeShape EntityType="ERHModel.Staff" Width="1.5" PointX="8" PointY="7.75" />
         <EntityTypeShape EntityType="ERHModel.StockKeepingUnit" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="ERHModel.Street" Width="1.5" PointX="0.75" PointY="10" />
         <EntityTypeShape EntityType="ERHModel.User" Width="1.5" PointX="7.75" PointY="4.375" />

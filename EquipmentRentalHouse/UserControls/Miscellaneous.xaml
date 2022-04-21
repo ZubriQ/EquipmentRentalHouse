@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="EquipmentRentalHouse.UserControls.Miscellaneous"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EquipmentRentalHouse.UserControls"
+             mc:Ignorable="d" >
+    <StackPanel HorizontalAlignment="Center" Margin="5" VerticalAlignment="Center">
+        <Button x:Name="btn_ChangePassword" Template="{StaticResource Submit}" Content="Change Password"
+                Margin="5" Width="150" Height="28" Click="btn_ChangePassword_Click"
+                        />
+    </StackPanel>
+</UserControl>

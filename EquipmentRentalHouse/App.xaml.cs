@@ -13,6 +13,7 @@ namespace EquipmentRentalHouse
     {
         public static ERHEntities DB = new ERHEntities();
 
-        public User User { get; set; } // Current user.
+        public static User User { get; set; } // Current user.
+        public static ObjectsUser Rights { get; set; } // Rights.
     }
 }

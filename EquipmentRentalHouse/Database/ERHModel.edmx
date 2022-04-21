@@ -59,10 +59,10 @@
         </EntityType>
         <EntityType Name="ObjectsUsers">
           <Key>
-            <PropertyRef Name="UserLogin" />
+            <PropertyRef Name="UserId" />
             <PropertyRef Name="ObjectId" />
           </Key>
-          <Property Name="UserLogin" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ObjectId" Type="int" Nullable="false" />
           <Property Name="C" Type="bit" Nullable="false" />
           <Property Name="R" Type="bit" Nullable="false" />
@@ -79,6 +79,7 @@
           <Property Name="DateOfOrder" Type="datetime" Nullable="false" />
           <Property Name="DateOfExpiration" Type="datetime" Nullable="false" />
           <Property Name="IsReturned" Type="bit" Nullable="false" />
+          <Property Name="DateOfReturn" Type="datetime" />
         </EntityType>
         <EntityType Name="Positions">
           <Key>
@@ -126,10 +127,11 @@
         </EntityType>
         <EntityType Name="Users">
           <Key>
-            <PropertyRef Name="Login" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="16" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="70" Nullable="false" />
         </EntityType>
         <Association Name="FK_Clients_Streets">
           <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
@@ -184,10 +186,10 @@
           <End Role="ObjectsUsers" Type="Self.ObjectsUsers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Users">
-              <PropertyRef Name="Login" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ObjectsUsers">
-              <PropertyRef Name="UserLogin" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -444,10 +446,10 @@
         </EntityType>
         <EntityType Name="ObjectsUser">
           <Key>
-            <PropertyRef Name="UserLogin" />
+            <PropertyRef Name="UserId" />
             <PropertyRef Name="ObjectId" />
           </Key>
-          <Property Name="UserLogin" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ObjectId" Type="Int32" Nullable="false" />
           <Property Name="C" Type="Boolean" Nullable="false" />
           <Property Name="R" Type="Boolean" Nullable="false" />
@@ -466,6 +468,7 @@
           <Property Name="DateOfOrder" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DateOfExpiration" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsReturned" Type="Boolean" Nullable="false" />
+          <Property Name="DateOfReturn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Client" Relationship="ERHModel.FK_Orders_Clients1" FromRole="Order" ToRole="Client" />
           <NavigationProperty Name="StockKeepingUnit" Relationship="ERHModel.FK_Orders_StockKeepingUnits1" FromRole="Order" ToRole="StockKeepingUnit" />
         </EntityType>
@@ -525,10 +528,11 @@
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Login" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ObjectsUsers" Relationship="ERHModel.FK_ObjectsUsers_Users" FromRole="User" ToRole="ObjectsUser" />
         </EntityType>
         <Association Name="FK_Clients_Streets">
@@ -620,10 +624,10 @@
           <End Type="ERHModel.ObjectsUser" Role="ObjectsUser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
-              <PropertyRef Name="Login" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="ObjectsUser">
-              <PropertyRef Name="UserLogin" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -734,13 +738,14 @@
                 <ScalarProperty Name="R" ColumnName="R" />
                 <ScalarProperty Name="C" ColumnName="C" />
                 <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
-                <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="ERHModel.Order">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="DateOfReturn" ColumnName="DateOfReturn" />
                 <ScalarProperty Name="IsReturned" ColumnName="IsReturned" />
                 <ScalarProperty Name="DateOfExpiration" ColumnName="DateOfExpiration" />
                 <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
@@ -802,6 +807,7 @@
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

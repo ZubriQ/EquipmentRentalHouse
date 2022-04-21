@@ -91,6 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ERHModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Database\Extensions.cs" />
     <Compile Include="Database\Manufacturer.cs">
       <DependentUpon>ERHModel.tt</DependentUpon>
     </Compile>
@@ -127,14 +128,20 @@
     <Compile Include="UserControls\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Miscellaneous.xaml.cs">
+      <DependentUpon>Miscellaneous.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Clients\ClientPassportWindow.xaml.cs">
       <DependentUpon>ClientPassportWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Clients\ClientsAddEditWindow.xaml.cs">
-      <DependentUpon>ClientsAddEditWindow.xaml</DependentUpon>
+    <Compile Include="Windows\Clients\ClientAddEditWindow.xaml.cs">
+      <DependentUpon>ClientAddEditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Clients\RentedDevicesWindow.xaml.cs">
       <DependentUpon>RentedDevicesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Misc\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\SKU\SKUAddEditWindow.xaml.cs">
       <DependentUpon>SKUAddEditWindow.xaml</DependentUpon>
@@ -158,6 +165,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Miscellaneous.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\SKU.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,7 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Clients\ClientsAddEditWindow.xaml">
+    <Page Include="Windows\Clients\ClientAddEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,11 +205,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\LoginWindow.xaml">
+    <Page Include="Windows\Misc\ChangePasswordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\MainWindow.xaml">
+    <Page Include="Windows\Misc\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Misc\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -228,10 +243,10 @@
     <Compile Include="Windows\Employees\StaffAddEditWindow.xaml.cs">
       <DependentUpon>StaffAddEditWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\LoginWindow.xaml.cs">
+    <Compile Include="Windows\Misc\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MainWindow.xaml.cs">
+    <Compile Include="Windows\Misc\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -278,11 +293,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Resource Include="Fonts\Montebello-Regular.ttf" />
-    <Resource Include="Fonts\Modum.ttf" />
     <Resource Include="Fonts\Cinzel-Regular.otf" />
     <Resource Include="Fonts\CinzelDecorative-Regular.otf" />
-    <Resource Include="Fonts\Dosis-Regular.ttf" />
     <EntityDeploy Include="Database\ERHModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ERHModel.Designer.cs</LastGenOutput>
@@ -290,6 +302,9 @@
     <None Include="Database\ERHModel.edmx.diagram">
       <DependentUpon>ERHModel.edmx</DependentUpon>
     </None>
+    <Resource Include="Fonts\Dosis-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -301,8 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="Windows\Dashboard\" />
-    <Folder Include="Windows\Other\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Database\ERHModel.Context.tt">

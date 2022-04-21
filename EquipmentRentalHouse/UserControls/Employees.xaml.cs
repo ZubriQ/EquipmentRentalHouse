@@ -154,9 +154,10 @@ namespace EquipmentRentalHouse.UserControls
             else employees = _staff.Where(s => s.IsDismissed == true).ToList();
             try
             {
-                dgEmployees.ItemsSource = employees.Where(s => s.FirstName.ToLower().Contains(search) ||
-                                                          s.Surname.ToLower().Contains(search) ||
-                                                          s.Patronymic.ToLower().Contains(search));
+                dgEmployees.ItemsSource = employees.Where(s => s.FullName.ToLower().Contains(search));
+                //dgEmployees.ItemsSource = employees.Where(s => s.FirstName.ToLower().Contains(search) ||
+                //                                          s.Surname.ToLower().Contains(search));
+                //  || s.Patronymic.ToLower().Contains(search)
             }
             catch { }
         }

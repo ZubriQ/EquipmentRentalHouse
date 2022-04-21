@@ -19,6 +19,7 @@ namespace EquipmentRentalHouse.Database
         public System.DateTime DateOfOrder { get; set; }
         public System.DateTime DateOfExpiration { get; set; }
         public bool IsReturned { get; set; }
+        public Nullable<System.DateTime> DateOfReturn { get; set; }
     
         public virtual Client Client { get; set; }
         public virtual StockKeepingUnit StockKeepingUnit { get; set; }

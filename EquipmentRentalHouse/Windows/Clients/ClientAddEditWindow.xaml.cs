@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 
 namespace EquipmentRentalHouse.Windows.Clients
 {
-    public partial class ClientsAddEditWindow : Window
+    public partial class ClientAddEditWindow : Window
     {
         Client _client;
         List<StockKeepingUnit> _allStock;
@@ -38,7 +38,7 @@ namespace EquipmentRentalHouse.Windows.Clients
         }
 
         // Adding.
-        public ClientsAddEditWindow()
+        public ClientAddEditWindow()
         {
             InitializeComponent();
             InitializeInitialData();
@@ -65,7 +65,7 @@ namespace EquipmentRentalHouse.Windows.Clients
         }
 
         // Editing.
-        public ClientsAddEditWindow(Client client)
+        public ClientAddEditWindow(Client client)
         {
             InitializeComponent();
             InitializeInitialData();

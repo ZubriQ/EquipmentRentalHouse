@@ -132,7 +132,9 @@
                 <DataGridTextColumn Header="Street" Binding="{Binding Path=Street.Name}" />
                 <DataGridTextColumn Header="Building" Binding="{Binding Path=Building}" />
                 <DataGridTextColumn Header="Apartment" Binding="{Binding Path=Apartment}"/>
-                <!-- TODO: Add bought items count -->
+                <!-- Total rented and returned items. -->
+                <DataGridTextColumn Header="Rented" Binding="{Binding Path=TotalOrdersCount}"/>
+                <DataGridTextColumn Header="Returned" Binding="{Binding Path=ReturnedOrdersCount}"/>
                 <!-- Passport data [column indices: {9,10,11,12,13,14}]-->
                 <DataGridTextColumn Header="Pas. issued by" Binding="{Binding Path=PassportIssuedBy}"/>
                 <DataGridTextColumn Header="Pas. issue date" Binding="{Binding Path=PassportDateOfIssue, StringFormat=dd.MM.yyyy}" />

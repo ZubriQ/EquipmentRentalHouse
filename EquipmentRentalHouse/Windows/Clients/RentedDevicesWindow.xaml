@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.Clients"
         mc:Ignorable="d"
-        Title="RentedDevicesWindow" Height="300" Width="500"
+        Title="RentedDevicesWindow" Height="300" Width="700"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True">
@@ -45,8 +45,11 @@
                     <!-- Update/Cancel. -->
                 </Grid.RowDefinitions>
                 <DockPanel HorizontalAlignment="Left" >
-                    <Button x:Name="btn_ReturnToStock" Template="{StaticResource Submit}" Content="Return to Stock"
-                    Margin="5" Width="130" Height="28" Click="btn_ReturnToStock_Click" 
+                    <Button x:Name="btn_ReturnToStock" Template="{StaticResource Submit}" Content="Return to the Stock"
+                    Margin="5" Width="155" Height="28" Click="btn_ReturnToStock_Click" 
+                        />
+                    <Button x:Name="btn_CancelReturning" Template="{StaticResource Submit}" Content="Cancel a Return"
+                    Margin="5" Width="135" Height="28" Click="btn_CancelReturning_Click"
                         />
                 </DockPanel>
 
@@ -54,11 +57,15 @@
                 <DataGrid Grid.Row="1" Margin="2" x:Name="dgSKUs" AutoGenerateColumns="False" 
                           IsReadOnly="True" SelectionMode="Single" Language="ru-RU">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Device" Binding="{Binding Path=Device.Name}" />
-                        <DataGridTextColumn Header="Number" Binding="{Binding Path=Number}" />
-                        <DataGridTextColumn Header="Manufacturer" Binding="{Binding Path=Manufacturer.Name}" />
-                        <DataGridTextColumn Header="Device price" Binding="{Binding Path=DevicePrice, StringFormat=\{0:C\}}" />
-                        <DataGridTextColumn Header="Rental price" Binding="{Binding Path=RentalPrice, StringFormat=\{0:C\}}" Width="*"/>
+                        <DataGridTextColumn Header="Device" Binding="{Binding Path=StockKeepingUnit.Device.Name}" />
+                        <DataGridTextColumn Header="Number" Binding="{Binding Path=StockKeepingUnit.Number}" />
+                        <DataGridTextColumn Header="Manufacturer" Binding="{Binding Path=StockKeepingUnit.Manufacturer.Name}" />
+                        <DataGridTextColumn Header="Device price" Binding="{Binding Path=StockKeepingUnit.DevicePrice, StringFormat=\{0:C\}}" />
+                        <DataGridTextColumn Header="Rental price" Binding="{Binding Path=StockKeepingUnit.RentalPrice, StringFormat=\{0:C\}}"/>
+                        <DataGridTextColumn Header="Order date" Binding="{Binding Path=DateOfOrder, StringFormat=dd.MM.yyyy}" />
+                        <DataGridTextColumn Header="Expires" Binding="{Binding Path=DateOfExpiration, StringFormat=dd.MM.yyyy}" />
+                        <DataGridCheckBoxColumn Header="Returned" Binding="{Binding Path=IsReturned}"/>
+                        <DataGridTextColumn Header="Return date" Binding="{Binding Path=DateOfReturn}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using EquipmentRentalHouse.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace EquipmentRentalHouse
+namespace EquipmentRentalHouse.Windows.Misc
 {
     public partial class LoginWindow : Window
     {
@@ -27,9 +29,11 @@ namespace EquipmentRentalHouse
         {
             get
             {
-                return pbPassword.Password.Trim();
+                return pbPassword.Password;
             }
         }
+
+        User _user;
 
         public LoginWindow()
         {
@@ -41,7 +45,6 @@ namespace EquipmentRentalHouse
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -53,7 +56,6 @@ namespace EquipmentRentalHouse
                 tbUsernamePlaceholder.Text = "username";
             else tbUsernamePlaceholder.Text = "";
         }
-
         private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (pbPassword.Password == "")
@@ -63,9 +65,38 @@ namespace EquipmentRentalHouse
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
-            window.Show();
-            Close();
+            var user = App.DB.Users.FirstOrDefault(u => u.Login == txtUsername.Text);
+            var valid = user?.ObjectsUsers.FirstOrDefault(v => v.Object.Name == "Equipment Rental House");
+            // Check if the user has rights.
+            if (valid != null)
+            {
+                bool access = Validate(user);
+                if (access)
+                {
+                    App.User = user;
+                    App.Rights = valid;
+                    MainWindow window = new MainWindow();
+                    window.Show();
+                    Close();
+                }
+                else MessageBox.Show("Incorrect user password.");
+            }
+            else MessageBox.Show("Incorrect user login.");
+        }
+
+        bool Validate(User user)
+        {
+            string savedPasswordHash = user.Password.ToString();
+            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+            var pbkdf2 = new Rfc2898DeriveBytes(pbPassword.Password, salt, 10000);
+            byte[] hash = pbkdf2.GetBytes(20);
+            bool access = true;
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                    access = false;
+            return access;
         }
     }
 }

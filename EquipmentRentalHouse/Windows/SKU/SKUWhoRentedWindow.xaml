@@ -5,8 +5,81 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EquipmentRentalHouse.Windows.SKU"
         mc:Ignorable="d"
-        Title="SKUWhoRentedWindow" Height="450" Width="800">
-    <Grid>
+        Title="SKUWhoRentedWindow" Height="200" Width="400"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Border CornerRadius="8">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!-- Header. -->
+            <Border x:Name="brd_Border" Background="#165170" CornerRadius="8,8,0,0" 
+                    MouseDown="brd_Border_MouseDown" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="lblTitle"
+                           Content="Current tenant" Foreground="White" FontFamily="Fonts/#Cinzel"
+                           VerticalAlignment="Center" Margin="10,0,0,0" FontSize="16"/>
+
+                    <Button x:Name="btn_Close"
+                        Grid.Column="1" Template="{StaticResource Close}" Click="btn_Close_Click" />
+                </Grid>
+            </Border>
+
+            <!-- Add/Edit an employee. -->
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- First name, surname, patronymic -->
+                <DockPanel Grid.Row="2" HorizontalAlignment="Left" Margin="5">
+                    <Label VerticalContentAlignment="Center"
+                           Content="Phone:" FontFamily="Georgia" Foreground="White"
+                           VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Width="77"/>
+                    <TextBox x:Name="txtFullName" BorderBrush="White"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         Width="270" Text="{Binding Client.Phone}" IsReadOnly="True"/>
+                </DockPanel>
+
+                <!-- Phone -->
+                <DockPanel Grid.Row="1" HorizontalAlignment="Left" Margin="5">
+                    <Label VerticalContentAlignment="Center"
+                           Content="Full name:" FontFamily="Georgia" Foreground="White"
+                           VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Width="77"/>
+                    <TextBox x:Name="txtCatalogueName" BorderBrush="White"
+                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                         Width="270" Text="{Binding Client.FullName, Mode=OneWay}" IsReadOnly="True"/>
+                </DockPanel>
+
+                <!-- Buttons -->
+                <DockPanel Grid.Row="3"  Margin="5" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button x:Name="btn_OK" Template="{StaticResource Submit}" Content="OK"
+                        Margin="5" Width="110" Click="btn_OK_Click"/>
+                </DockPanel>
+            </Grid>
+        </Grid>
+
         
-    </Grid>
+        <Border.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#1C658C" />
+                <GradientStop Color="#5A9FC8" Offset="0.74"/>
+                <GradientStop Color="#90C1DD" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+    </Border>
 </Window>

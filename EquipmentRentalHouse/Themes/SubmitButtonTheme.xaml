@@ -2,58 +2,23 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ControlTemplate TargetType="Button" x:Key="Submit" >
-        <Border x:Name="btnSubmit" 
+        <Border x:Name="btnSubmit" Background="#ADA9A3"
                     BorderThickness="0" Height="32">
 
             <ContentControl Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 Foreground="White" FontSize="16" FontFamily="Fonts/#Dosis" FontWeight="DemiBold" />
-
-            <!-- Animations. -->
-            <Border.Background>
-                <!-- Default state. -->
-                <SolidColorBrush x:Name="BorderColor" Color="#C3BEB7" />
-            </Border.Background>
-            
-            <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup Name="CommonStates">
-                    <VisualState Name="MouseOver">
-                        <Storyboard>
-                            <!-- When mousing over. -->
-                            <!--<ColorAnimation Storyboard.TargetName="BorderColor"
-                                    Storyboard.TargetProperty="Color" To="#ADA9A3" />-->
-                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderColor"
-                                                          Storyboard.TargetProperty="Color" FillBehavior="HoldEnd">
-                                <ColorAnimationUsingKeyFrames.KeyFrames>
-                                    <LinearColorKeyFrame Value="#DDD7D1" KeyTime="0:0:0.2"/>
-                                </ColorAnimationUsingKeyFrames.KeyFrames>
-                            </ColorAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </VisualState>
-                    <VisualState Name="Normal">
-                        <Storyboard>
-                            <!-- Default state. -->
-                            <ColorAnimation Storyboard.TargetName="BorderColor"
-                                    Storyboard.TargetProperty="Color" To="#C3BEB7" />
-                        </Storyboard>
-                    </VisualState>
-                    <VisualStateGroup.Transitions>
-                        <VisualTransition From="MouseOver" To="Normal">
-                            <Storyboard>
-                                <ColorAnimationUsingKeyFrames Storyboard.TargetName="BorderColor"
-                                            Storyboard.TargetProperty="Color" FillBehavior="HoldEnd">
-                                    <ColorAnimationUsingKeyFrames.KeyFrames>
-                                        <LinearColorKeyFrame Value="#DDD7D1" KeyTime="0:0:0.001" />
-                                    </ColorAnimationUsingKeyFrames.KeyFrames>
-                                </ColorAnimationUsingKeyFrames>
-                            </Storyboard>
-                        </VisualTransition>
-                    </VisualStateGroup.Transitions>
-                </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
         </Border>
 
         <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="btnSubmit" Property="Background" Value="#938e86" />
+            </Trigger>
+
+            <Trigger Property="IsPressed" Value="true">
+                <Setter TargetName="btnSubmit" Property="Background" Value="#c3c0bc"/>
+            </Trigger>
+            
             <Trigger Property="IsEnabled" Value="false">
                 <Setter Property="Foreground" Value="Gray"/>
                 <Setter TargetName="btnSubmit" Property="Background" Value="LightGray"/>

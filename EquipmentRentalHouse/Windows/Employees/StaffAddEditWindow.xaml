@@ -91,18 +91,18 @@
                 <!-- Position, salary increase -->
                 <DockPanel Grid.Row="3" HorizontalAlignment="Left"  Margin="5">
                     <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
-                            Content="Position:" FontFamily="Georgia" Foreground="White"
-                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="82"/>
+                           Content="Position:" FontFamily="Georgia" Foreground="White"
+                           VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="82"/>
                     <ComboBox x:Name="cbPosition" BorderBrush="White"
-                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
-                         Width="110" SelectedItem="{Binding Position}" DisplayMemberPath="Name"/>
+                              Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                              Width="110" SelectedItem="{Binding Position}" DisplayMemberPath="Name"/>
 
                     <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right"
-                            Content="Salary increase:" FontFamily="Georgia" Foreground="White"
-                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="108"/>
+                           Content="Salary increase:" FontFamily="Georgia" Foreground="White"
+                           VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Right" Width="108"/>
                     <TextBox x:Name="txtSalaryIncrease" BorderBrush="White"
-                         Height="28" VerticalContentAlignment="Center" FontSize="14" 
-                         MaxLength="40" Width="110" Text="{Binding SalaryIncrease}"/>
+                             Height="28" VerticalContentAlignment="Center" FontSize="14" 
+                             MaxLength="40" Width="110" Text="{Binding SalaryIncrease}"/>
                 </DockPanel>
 
                 <!-- Street, building, apartment -->

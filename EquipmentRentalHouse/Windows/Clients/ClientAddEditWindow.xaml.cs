@@ -149,31 +149,68 @@ namespace EquipmentRentalHouse.Windows.Clients
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
+            if (!IsFullnameValid())
+                MessageBox.Show($"Full name is incorrect.");
+            else if (!IsPassportValid())
+                MessageBox.Show($"Passport code or number is incorrect.");
+            else Finish();
+        }
+
+        void Finish()
+        {
             if (_isAdding)
-            {
-                if (Basket.Count > 0) // TODO: check the client's fields with Regex.
-                {
-                    try
-                    {
-                        App.DB.Clients.Add(_client);
-                        App.DB.SaveChanges();
-                        MessageBox.Show($"Rental order has been successfully added.");
-                        Close();
-                    }
-                    catch { }
-                }
-            }
-            else // Then it's editing.
+                FinishAdding();
+            else
+                FinishEditing();
+        }
+
+        bool IsFullnameValid()
+        {
+            if (!UserDataChecker.CheckName(txtFirstName.Text))
+                return false;
+            if (!UserDataChecker.CheckName(txtSurname.Text))
+                return false;
+            if (!UserDataChecker.CheckPatronymic(txtPatronymic.Text))
+                return false;
+
+            return true;
+        }
+
+        bool IsPassportValid()
+        {
+            if (!UserDataChecker.CheckPassportCode(txtPassportCode.Text))
+                return false;
+            if (!UserDataChecker.CheckName(txtPassportNumber.Text))
+                return false;
+
+            return true;
+        }
+
+        void FinishAdding()
+        {
+            if (Basket.Count > 0) // TODO: check the client's fields with Regex.
             {
                 try
                 {
-                    App.DB.Orders.AddRange(Orders);
+                    App.DB.Clients.Add(_client);
                     App.DB.SaveChanges();
-                    MessageBox.Show($"Rental order has been successfully changed.");
+                    MessageBox.Show($"Rental order has been successfully added.");
                     Close();
                 }
                 catch { }
             }
+        }
+
+        void FinishEditing()
+        {
+            try
+            {
+                App.DB.Orders.AddRange(Orders);
+                App.DB.SaveChanges();
+                MessageBox.Show($"Rental order has been successfully changed.");
+                Close();
+            }
+            catch { }
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

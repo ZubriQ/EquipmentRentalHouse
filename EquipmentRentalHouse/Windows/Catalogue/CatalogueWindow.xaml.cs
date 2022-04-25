@@ -22,6 +22,28 @@ namespace EquipmentRentalHouse.Windows.Catalogue
         public CatalogueWindow(Catalogue cat) // :3
         {
             InitializeComponent();
+            InitializeButtonStates();
+            if (App.Rights.R)
+                InitializeCatalogue(cat);
+            lblTitle.Content = $"Equipment Rental House - {cat}";
+        }
+
+        void InitializeButtonStates()
+        {
+            if (App.Rights.C == false)
+                btnAdd.IsEnabled = false;
+            if (App.Rights.R == false)
+                btnUpdate.IsEnabled = false;
+            if (App.Rights.U == false)
+                btnEdit.IsEnabled = false;
+            if (App.Rights.D == false)
+                btnRemove.IsEnabled = false;
+        }
+
+
+        #region Initialization
+        void InitializeCatalogue(Catalogue cat)
+        {
             _catalogue = cat;
             switch (cat)
             {
@@ -38,32 +60,25 @@ namespace EquipmentRentalHouse.Windows.Catalogue
                     InitializeStreets();
                     break;
             }
-            lblTitle.Content = $"Equipment Rental House - {cat}";
         }
 
-
-        #region Initialization
         void InitializeDevices()
         {
-            lblTitle.Content = "Equipment Rental House - Devices";
             dgCatalogue.ItemsSource = App.DB.Devices.ToList().OrderBy(x => x.Name);
         }
 
         void InitializePositions()
         {
-            lblTitle.Content = "Equipment Rental House - Positions";
             dgCatalogue.ItemsSource = App.DB.Positions.ToList().OrderBy(x => x.Name);
         }
 
         void InitializeManufacturers()
         {
-            lblTitle.Content = "Equipment Rental House - Manufacturers";
             dgCatalogue.ItemsSource = App.DB.Manufacturers.ToList().OrderBy(x => x.Name);
         }
 
         void InitializeStreets()
         {
-            lblTitle.Content = "Equipment Rental House - Streets";
             dgCatalogue.ItemsSource = App.DB.Streets.ToList().OrderBy(x => x.Name);
         }
         #endregion
@@ -83,17 +98,23 @@ namespace EquipmentRentalHouse.Windows.Catalogue
         #region Add/Edit buttons.
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            CatalogueAddEditWindow w = new CatalogueAddEditWindow(_catalogue);
-            w.ShowDialog();
+            if (App.Rights.C)
+            {
+                CatalogueAddEditWindow w = new CatalogueAddEditWindow(_catalogue);
+                w.ShowDialog();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            var obj = dgCatalogue.SelectedItem;
-            if (obj != null)
+            if (App.Rights.U)
             {
-                CatalogueAddEditWindow w = new CatalogueAddEditWindow(_catalogue, obj);
-                w.ShowDialog();
+                var obj = dgCatalogue.SelectedItem;
+                if (obj != null)
+                {
+                    CatalogueAddEditWindow w = new CatalogueAddEditWindow(_catalogue, obj);
+                    w.ShowDialog();
+                }
             }
         }
         #endregion
@@ -102,16 +123,19 @@ namespace EquipmentRentalHouse.Windows.Catalogue
         #region Remove/Update buttons.
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            var obj = dgCatalogue.SelectedItem;
-            if (obj != null)
+            if (App.Rights.D)
             {
-                if (MessageBox.Show($"Remove the selected {_catalogue}?", "Removing",
-                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                var obj = dgCatalogue.SelectedItem;
+                if (obj != null)
                 {
-                    RemoveObject(obj);
-                    App.DB.SaveChanges();
-                    MessageBox.Show($"The {_catalogue} has successfully been removed.");
-                    UpdateDataGrid();
+                    if (MessageBox.Show($"Remove the selected {_catalogue}?", "Removing",
+                        MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    {
+                        RemoveObject(obj);
+                        App.DB.SaveChanges();
+                        MessageBox.Show($"The {_catalogue} has successfully been removed.");
+                        UpdateDataGrid();
+                    }
                 }
             }
         }
@@ -137,7 +161,8 @@ namespace EquipmentRentalHouse.Windows.Catalogue
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDataGrid();
+            if (App.Rights.R)
+                UpdateDataGrid();
         }
 
         public void UpdateDataGrid()

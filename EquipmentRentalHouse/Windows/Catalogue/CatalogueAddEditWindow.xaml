@@ -47,8 +47,8 @@
                 <!-- First name, surname, patronymic -->
                 <DockPanel Grid.Row="1" HorizontalAlignment="Center" Margin="5">
                     <Label x:Name="lblCatalogue" VerticalContentAlignment="Center"
-                            Content="Catalogue:" FontFamily="Georgia" Foreground="White"
-                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right"/>
+                           Content="Catalogue:" FontFamily="Georgia" Foreground="White"
+                           VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right"/>
                     <TextBox x:Name="txtCatalogueName" BorderBrush="White"
                          Height="28" VerticalContentAlignment="Center" FontSize="14" 
                          MaxLength="40" Width="150" Text="{Binding Name}"/>

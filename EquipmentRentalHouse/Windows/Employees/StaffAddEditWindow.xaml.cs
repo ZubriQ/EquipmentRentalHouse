@@ -85,6 +85,15 @@ namespace EquipmentRentalHouse.Windows.Employees
         // Finish adding or editing.
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
+            if (IsFullnameValid())
+            {
+                Finish();
+            }
+            else MessageBox.Show($"Full name is incorrect.");
+        }
+
+        void Finish()
+        {
             if (_isAdding)
             {
                 if (FinishAdding())
@@ -121,6 +130,18 @@ namespace EquipmentRentalHouse.Windows.Employees
                 MessageBox.Show($"The employee has been successfully changed.");
             }
             catch { }
+        }
+
+        bool IsFullnameValid()
+        {
+            if (!UserDataChecker.CheckName(txtFirstName.Text))
+                return false;
+            if (!UserDataChecker.CheckName(txtSurname.Text))
+                return false;
+            if (!UserDataChecker.CheckPatronymic(txtPatronymic.Text))
+                return false;
+
+            return true;
         }
     }
 }

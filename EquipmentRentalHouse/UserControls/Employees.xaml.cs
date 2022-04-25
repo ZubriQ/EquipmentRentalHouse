@@ -24,23 +24,46 @@ namespace EquipmentRentalHouse.UserControls
         public Employees()
         {
             InitializeComponent();
-            _staff = App.DB.Staffs.ToList();
-            dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
+            InitializeButtonStates();
+            if (App.Rights.R)
+            {
+                _staff = App.DB.Staffs.ToList();
+                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
+            }
 
             dgEmployees.Columns[9].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+        }
+
+        void InitializeButtonStates()
+        {
+            if (App.Rights.C == false)
+                btnAdd.IsEnabled = false;
+            if (App.Rights.R == false)
+            {
+                btnUpdate.IsEnabled = false;
+                chkShowDismissed.IsEnabled = false;
+                txtSearch.IsEnabled = false;
+            }
+            if (App.Rights.U == false)
+                btnEdit.IsEnabled = false;
+            if (App.Rights.D == false)
+                btnDismiss.IsEnabled = false;
         }
 
 
         #region Add, Edit, Dismiss controls
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            StaffAddEditWindow window = new StaffAddEditWindow();
-            window.ShowDialog();
+            if (App.Rights.C == true)
+            {
+                StaffAddEditWindow window = new StaffAddEditWindow();
+                window.ShowDialog();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (dgEmployees.SelectedItem != null)
+            if (App.Rights.U == true && dgEmployees.SelectedItem != null)
             {
                 var employee = dgEmployees.SelectedItem as Staff;
                 StaffAddEditWindow window = new StaffAddEditWindow(employee);
@@ -50,23 +73,26 @@ namespace EquipmentRentalHouse.UserControls
 
         private void btnDismiss_Click(object sender, RoutedEventArgs e)
         {
-            var employee = dgEmployees.SelectedItem as Staff;
-            if ((employee != null) && (employee.IsDismissed == false))
+            if (App.Rights.R == true)
             {
-                DismissEmployee(employee);
-                Update();
-            }
-            else if ((employee != null) && (employee.IsDismissed == true))
-            {
-                ReturnDismissedEmployee(employee);
-                Update();
+                var employee = dgEmployees.SelectedItem as Staff;
+                if ((employee != null) && (employee.IsDismissed == false))
+                {
+                    DismissEmployee(employee);
+                    Update();
+                }
+                else if ((employee != null) && (employee.IsDismissed == true))
+                {
+                    ReturnDismissedEmployee(employee);
+                    Update();
+                }
             }
         }
 
         void DismissEmployee(Staff employee)
         {
             if (MessageBox.Show("Dismiss the selected employee?", "Dismissing",
-                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 employee.IsDismissed = true;
                 employee.DateOfDismissal = DateTime.Now;
@@ -89,10 +115,15 @@ namespace EquipmentRentalHouse.UserControls
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            _staff = App.DB.Staffs.ToList();
-            if (chkShowDismissed.IsChecked == false)
-                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
-            else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
+            if (App.Rights.R == true)
+            {
+                _staff = App.DB.Staffs.ToList();
+                if (chkShowDismissed.IsChecked == false)
+                    dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false)
+                        .ToArray();
+                else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true)
+                        .ToArray();
+            }
         }
         #endregion
 
@@ -130,12 +161,15 @@ namespace EquipmentRentalHouse.UserControls
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SearchbarPlaceholderState();
+            if (App.Rights.R == true)
+            {
+                SearchbarPlaceholderState();
 
-            if (txtSearch.Text.Length > 1)
-                SearchEmployee();
-            else
-                EmployeeNotFound();
+                if (txtSearch.Text.Length > 1)
+                    SearchEmployee();
+                else
+                    EmployeeNotFound();
+            }
         }
 
         void SearchbarPlaceholderState()
@@ -154,10 +188,8 @@ namespace EquipmentRentalHouse.UserControls
             else employees = _staff.Where(s => s.IsDismissed == true).ToList();
             try
             {
-                dgEmployees.ItemsSource = employees.Where(s => s.FullName.ToLower().Contains(search));
-                //dgEmployees.ItemsSource = employees.Where(s => s.FirstName.ToLower().Contains(search) ||
-                //                                          s.Surname.ToLower().Contains(search));
-                //  || s.Patronymic.ToLower().Contains(search)
+                dgEmployees.ItemsSource = employees.Where(s => s.FullName.ToLower()
+                .Contains(search));
             }
             catch { }
         }
@@ -165,29 +197,40 @@ namespace EquipmentRentalHouse.UserControls
         void EmployeeNotFound()
         {
             if (chkShowDismissed.IsChecked == false)
-                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
-            else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
+                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false)
+                    .ToArray();
+            else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true)
+                    .ToArray();
         }
 
         private void chkShowDismissed_Checked(object sender, RoutedEventArgs e)
         {
-            dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
-            dgtxtclDateOfDismissal.Visibility = Visibility.Visible;
-            dgEmployees.Columns[9].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
+            if (App.Rights.R == true)
+            {
+                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
+                dgtxtclDateOfDismissal.Visibility = Visibility.Visible;
+                dgEmployees.Columns[9].Width = new DataGridLength(1, DataGridLengthUnitType.Auto);
+            }
         }
         private void chkShowDismissed_Unchecked(object sender, RoutedEventArgs e)
         {
-            dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
-            dgtxtclDateOfDismissal.Visibility = Visibility.Hidden;
-            dgEmployees.Columns[9].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            if (App.Rights.R == true)
+            {
+                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
+                dgtxtclDateOfDismissal.Visibility = Visibility.Hidden;
+                dgEmployees.Columns[9].Width = new DataGridLength(1, DataGridLengthUnitType.Star);
+            }
         }
         #endregion
 
         void Update()
         {
-            if (chkShowDismissed.IsChecked == false) // TODO: Update from App.DB?
-                dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
-            else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
+            if (App.Rights.R == true)
+            {
+                if (chkShowDismissed.IsChecked == false) // TODO: Update from App.DB?
+                    dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == false).ToArray();
+                else dgEmployees.ItemsSource = _staff.Where(s => s.IsDismissed == true).ToArray();
+            }
         }
     }
 }

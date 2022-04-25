@@ -33,11 +33,10 @@ namespace EquipmentRentalHouse.Windows.Misc
             }
         }
 
-        User _user;
-
         public LoginWindow()
         {
             InitializeComponent();
+            txtUsername.Focus();
         }
 
         private void brdBorder_MouseDown(object sender, MouseButtonEventArgs e)
@@ -64,6 +63,14 @@ namespace EquipmentRentalHouse.Windows.Misc
         }
 
         private void btnSignIn_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserDataChecker.CheckLogin(Username))
+                SignIn();
+            else
+                MessageBox.Show("Username can contain only letters, digits or underscores.");
+        }
+
+        void SignIn()
         {
             var user = App.DB.Users.FirstOrDefault(u => u.Login == txtUsername.Text);
             var valid = user?.ObjectsUsers.FirstOrDefault(v => v.Object.Name == "Equipment Rental House");
@@ -97,6 +104,22 @@ namespace EquipmentRentalHouse.Windows.Misc
                 if (hashBytes[i + 16] != hash[i])
                     access = false;
             return access;
+        }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key == Key.Enter) && (!string.IsNullOrWhiteSpace(txtUsername.Text)))
+            {
+                pbPassword.Focus();
+            }
+        }
+
+        private void pbPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Key == Key.Enter) && string.IsNullOrWhiteSpace(pbPassword.Password))
+                MessageBox.Show("Please, enter the password.");
+            else if (e.Key == Key.Enter)
+                btnSignIn_Click(sender, e);
         }
     }
 }

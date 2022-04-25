@@ -60,8 +60,9 @@
 
                     <Grid>
                         <TextBox x:Name="txtUsername" BorderBrush="White"
-                         Height="32" VerticalContentAlignment="Center" FontSize="16" 
-                         TextChanged="txtUsername_TextChanged" MaxLength="16"/>
+                                 Height="32" VerticalContentAlignment="Center" FontSize="16" 
+                                 TextChanged="txtUsername_TextChanged" MaxLength="16" VerticalAlignment="Bottom"
+                                 KeyDown="txtUsername_KeyDown"/>
 
                         <TextBlock x:Name="tbUsernamePlaceholder" Text="username" 
                                    FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
@@ -80,8 +81,10 @@
                     </Viewbox>
                     
                     <Grid>
-                        <PasswordBox x:Name="pbPassword" BorderBrush="White" PasswordChanged="pbPassword_PasswordChanged"
-                             Height="32"  VerticalContentAlignment="Center" FontSize="14" MaxLength="16"/>
+                        <PasswordBox x:Name="pbPassword" BorderBrush="White" 
+                                     Height="32" VerticalContentAlignment="Center" FontSize="14" MaxLength="16"
+                                     PasswordChanged="pbPassword_PasswordChanged"
+                                     KeyDown="pbPassword_KeyDown"/>
 
                         <TextBlock x:Name="tbPasswordPlaceholder" Text="password" 
                                    FontFamily="Georgia" FontSize="14" Foreground="DarkGray" IsHitTestVisible="False"
@@ -90,7 +93,7 @@
                 </DockPanel>
 
                 <Button x:Name="btnSignIn" Template="{StaticResource Submit}" Content="Submit"
-                    Margin="3" Click="btnSignIn_Click"/>
+                        Margin="3" Click="btnSignIn_Click"/>
             </StackPanel>
 
         </Grid>

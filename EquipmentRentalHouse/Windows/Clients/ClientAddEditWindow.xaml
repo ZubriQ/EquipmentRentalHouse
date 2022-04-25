@@ -58,7 +58,7 @@
                     </Grid.RowDefinitions>
                     <DockPanel >
                         <Label Content="Client" Foreground="White" FontFamily="Fonts/#Cinzel"
-                       VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
+                               VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16"/>
                     </DockPanel>
                     <Border Grid.Row="1" BorderBrush="#1C658C" BorderThickness="0.5" DockPanel.Dock="Bottom"></Border>
                 </Grid>
@@ -66,8 +66,8 @@
                 <!-- First name, surname, patronymic -->
                 <DockPanel Grid.Row="1" HorizontalAlignment="Left" Margin="5">
                     <Label VerticalContentAlignment="Center"
-                            Content="First name:" FontFamily="Georgia" Foreground="White"
-                            VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Width="82"/>
+                           Content="First name:" FontFamily="Georgia" Foreground="White"
+                           VerticalAlignment="Center" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right" Width="82"/>
                     <TextBox x:Name="txtFirstName" BorderBrush="White"
                          Height="28" VerticalContentAlignment="Center" FontSize="14" 
                          MaxLength="40" Width="110" Text="{Binding FirstName}"/>

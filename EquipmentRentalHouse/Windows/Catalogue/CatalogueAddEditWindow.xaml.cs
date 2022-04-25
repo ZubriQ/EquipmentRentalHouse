@@ -55,15 +55,22 @@ namespace EquipmentRentalHouse.Windows.Catalogue
         #region Add/Edit.
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (_isAdding)
+            if (string.IsNullOrWhiteSpace(txtCatalogueName.Text))
             {
-                if (FinishAdding())
-                    Close();
+                MessageBox.Show($"Error: name cannot be empty.");
             }
             else
             {
-                FinishEditing();
-                Close();
+                if (_isAdding)
+                {
+                    if (FinishAdding())
+                        Close();
+                }
+                else
+                {
+                    FinishEditing();
+                    Close();
+                }
             }
         }
 

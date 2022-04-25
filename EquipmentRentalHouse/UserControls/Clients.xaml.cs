@@ -24,14 +24,35 @@ namespace EquipmentRentalHouse.UserControls
         public Clients()
         {
             InitializeComponent();
+            InitializeButtonStates();
             HidePassportData();
-            _clients = App.DB.Clients.ToList();
-            dgClients.ItemsSource = _clients;
+            if (App.Rights.R)
+            {
+                _clients = App.DB.Clients.ToList();
+                dgClients.ItemsSource = _clients;
+            }
+        }
+
+        void InitializeButtonStates()
+        {
+            if (App.Rights.C == false)
+                btnAdd.IsEnabled = false;
+            if (App.Rights.R == false)
+            {
+                btnUpdate.IsEnabled = false;
+                chkShowPassportData.IsEnabled = false;
+                txtSearch.IsEnabled = false;
+            }
+            if (App.Rights.U == false)
+                btnEdit.IsEnabled = false;
+            if (App.Rights.D == false)
+                btnRemove.IsEnabled = false;
         }
 
         private void chkShowPassportData_Checked(object sender, RoutedEventArgs e)
         {
-            ShowPassportData();
+            if (App.Rights.R)
+                ShowPassportData();
         }
         void ShowPassportData()
         {
@@ -60,12 +81,15 @@ namespace EquipmentRentalHouse.UserControls
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SearchbarPlaceholderState();
+            if (App.Rights.R)
+            {
+                SearchbarPlaceholderState();
 
-            if (txtSearch.Text.Length > 1)
-                SearchEmployee();
-            else
-                dgClients.ItemsSource = _clients.ToList();
+                if (txtSearch.Text.Length > 1)
+                    SearchEmployee();
+                else
+                    dgClients.ItemsSource = _clients.ToList();
+            }
         }
         void SearchbarPlaceholderState()
         {
@@ -79,10 +103,8 @@ namespace EquipmentRentalHouse.UserControls
             List<Client> clients = _clients.ToList();
             try
             {
-                dgClients.ItemsSource = clients.Where(s => s.FullName.ToLower().Contains(search));
-                //dgClients.ItemsSource = clients.Where(s => s.FirstName.ToLower().Contains(search) ||
-                //                                           s.Surname.ToLower().Contains(search) ||
-                //                                           s.Patronymic.ToLower().Contains(search));
+                dgClients.ItemsSource = clients.Where(s => s.FullName.ToLower()
+                .Contains(search));
             }
             catch { }
         }
@@ -108,69 +130,85 @@ namespace EquipmentRentalHouse.UserControls
         }
         private void btnShowPassport_Click(object sender, RoutedEventArgs e)
         {
-            var client = dgClients.SelectedItem;
-            if (client is Client)
+            if (App.Rights.R)
             {
-                ClientPassportWindow w = new ClientPassportWindow(client as Client);
-                w.ShowDialog();
+                var client = dgClients.SelectedItem;
+                if (client is Client)
+                {
+                    ClientPassportWindow w = new ClientPassportWindow(client as Client);
+                    w.ShowDialog();
+                }
             }
         }
         private void btnShowOrderedItems_Click(object sender, RoutedEventArgs e)
         {
-            var client = dgClients.SelectedItem;
-            if (client is Client)
+            if (App.Rights.R)
             {
-                if ((client as Client).Orders.Count > 0)
+                var client = dgClients.SelectedItem;
+                if (client is Client)
                 {
-                    RentedDevicesWindow w = new RentedDevicesWindow(client as Client);
-                    w.ShowDialog();
+                    if ((client as Client).Orders.Count > 0)
+                    {
+                        RentedDevicesWindow w = new RentedDevicesWindow(client as Client);
+                        w.ShowDialog();
+                    }
+                    else MessageBox.Show($"The selected client has no items.");
                 }
-                else MessageBox.Show($"The selected client has no items.");
             }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            ClientAddEditWindow window = new ClientAddEditWindow();
-            window.ShowDialog();
-        }
-
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-            if (dgClients.SelectedItem != null)
+            if (App.Rights.C)
             {
-                var client = dgClients.SelectedItem as Client;
-                ClientAddEditWindow window = new ClientAddEditWindow(client);
+                ClientAddEditWindow window = new ClientAddEditWindow();
                 window.ShowDialog();
             }
         }
 
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (App.Rights.U)
+            {
+                if (dgClients.SelectedItem != null)
+                {
+                    var client = dgClients.SelectedItem as Client;
+                    ClientAddEditWindow window = new ClientAddEditWindow(client);
+                    window.ShowDialog();
+                }
+            } 
+        }
+
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            var obj = dgClients.SelectedItem as Client;
-            if (obj != null)
+            if (App.Rights.D)
             {
-                if (MessageBox.Show($"Remove the selected client?", "Removing",
-                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                var obj = dgClients.SelectedItem as Client;
+                if (obj != null)
                 {
-                    try
+                    if (MessageBox.Show($"Remove the selected client?", "Removing",
+                        MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
-                        App.DB.Clients.Remove(obj);
-                        App.DB.SaveChanges();
+                        try
+                        {
+                            App.DB.Clients.Remove(obj);
+                            App.DB.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show($"Error: the unit hasn't been removed.");
+                        }
+                        MessageBox.Show($"The client has successfully been removed.");
+                        Update();
                     }
-                    catch
-                    {
-                        MessageBox.Show($"Error: the unit hasn't been removed.");
-                    }
-                    MessageBox.Show($"The client has successfully been removed.");
-                    Update();
                 }
             }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Update();
+            if (App.Rights.R)
+                Update();
         }
 
         void Update()

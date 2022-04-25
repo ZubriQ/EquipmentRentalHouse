@@ -26,6 +26,13 @@ namespace EquipmentRentalHouse.UserControls
 
         void UpdateData()
         {
+            if (App.Rights.R)
+                ShowStatistics();
+            else HideStatistics();
+        }
+
+        void ShowStatistics()
+        {
             txtEmployeesTotal.Text = App.DB.Staffs.Count().ToString();
             txtEmployeesHired.Text = App.DB.Staffs.Where(x => x.IsDismissed == false).Count().ToString();
             txtDismissedStaff.Text = App.DB.Staffs.Where(x => x.IsDismissed == true).Count().ToString();
@@ -33,6 +40,18 @@ namespace EquipmentRentalHouse.UserControls
             txtDevicesTotal.Text = App.DB.StockKeepingUnits.Count().ToString();
             txtDevicesInStock.Text = App.DB.StockKeepingUnits.Where(x => x.IsInStock == true).Count().ToString();
             txtDevicesRented.Text = App.DB.StockKeepingUnits.Where(x => x.IsInStock == false).Count().ToString();
+        }
+
+        void HideStatistics()
+        {
+            var t = "***";
+            txtEmployeesTotal.Text = t;
+            txtEmployeesHired.Text = t;
+            txtDismissedStaff.Text = t;
+            txtClientsTotal.Text = t;
+            txtDevicesTotal.Text = t;
+            txtDevicesInStock.Text = t;
+            txtDevicesRented.Text = t;
         }
     }
 }

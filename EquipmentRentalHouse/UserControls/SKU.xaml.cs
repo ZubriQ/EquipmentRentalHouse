@@ -24,29 +24,54 @@ namespace EquipmentRentalHouse.UserControls
         public SKU()
         {
             InitializeComponent();
-            _SKUs = App.DB.StockKeepingUnits.ToList();
-            dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == true).ToList();
+            InitializeButtonStates();
+            if (App.Rights.R)
+            {
+                _SKUs = App.DB.StockKeepingUnits.ToList();
+                dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == true).ToList();
+            }
+        }
+
+        void InitializeButtonStates()
+        {
+            if (App.Rights.C == false)
+                btnAdd.IsEnabled = false;
+            if (App.Rights.R == false)
+            {
+                btnUpdate.IsEnabled = false;
+                chkIsInStock.IsEnabled = false;
+                chkIsInStock.IsChecked = false;
+                txtSearch.IsEnabled = false;
+            }
+            if (App.Rights.U == false)
+                btnEdit.IsEnabled = false;
+            if (App.Rights.D == false)
+                btnRemove.IsEnabled = false;
         }
 
         private void chkIsInStock_Unchecked(object sender, RoutedEventArgs e)
         {
-            dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == false).ToList();
+            if (App.Rights.R)
+                dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == false).ToList();
         }
 
         private void chkIsInStock_Checked(object sender, RoutedEventArgs e)
         {
-            if (dgSKUs != null)
+            if (App.Rights.R && dgSKUs != null)
                 dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == true).ToList();
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            SearchbarPlaceholderState();
+            if (App.Rights.R)
+            {
+                SearchbarPlaceholderState();
 
-            if (txtSearch.Text.Length > 1)
-                SearchSKU();
-            else
-                SKUNotFound();
+                if (txtSearch.Text.Length > 1)
+                    SearchSKU();
+                else
+                    SKUNotFound();
+            }
         }
 
         void SearchbarPlaceholderState()
@@ -96,68 +121,86 @@ namespace EquipmentRentalHouse.UserControls
 
         private void btnShowWhoRented_Click(object sender, RoutedEventArgs e)
         {
-            var item = dgSKUs.SelectedItem as StockKeepingUnit;
-            if (item != null)
+            if (App.Rights.R)
             {
-                var order = item.Orders.Where(o => o.IsReturned == false).FirstOrDefault();
-                if (order != null)
+                var item = dgSKUs.SelectedItem as StockKeepingUnit;
+                if (item != null)
                 {
-                    var window = new SKUWhoRentedWindow(order);
-                    window.ShowDialog();
+                    var order = item.Orders.Where(o => o.IsReturned == false).FirstOrDefault();
+                    if (order != null)
+                    {
+                        var window = new SKUWhoRentedWindow(order);
+                        window.ShowDialog();
+                    }
+                    else MessageBox.Show("The selected item is in stock.");
                 }
-                else MessageBox.Show("The selected item is in stock.");
             }
         }
 
         void UpdateDataGrid()
         {
-            if (chkIsInStock.IsChecked == true)
-                dgSKUs.ItemsSource = App.DB.StockKeepingUnits.Where(s => s.IsInStock == true).ToArray();
-            else dgSKUs.ItemsSource = App.DB.StockKeepingUnits.Where(s => s.IsInStock == false).ToArray();
+            if (App.Rights.R)
+            {
+                if (chkIsInStock.IsChecked == true)
+                    dgSKUs.ItemsSource = App.DB.StockKeepingUnits.Where(s => s.IsInStock == true)
+                        .ToArray();
+                else dgSKUs.ItemsSource = App.DB.StockKeepingUnits.Where(s => s.IsInStock == false)
+                        .ToArray();
+            }
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            SKUAddEditWindow window = new SKUAddEditWindow();
-            window.ShowDialog();
+            if (App.Rights.C)
+            {
+                SKUAddEditWindow window = new SKUAddEditWindow();
+                window.ShowDialog();
+            }
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (dgSKUs.SelectedItem != null)
+            if (App.Rights.U)
             {
-                var sku = dgSKUs.SelectedItem as StockKeepingUnit;
-                SKUAddEditWindow window = new SKUAddEditWindow(sku);
-                window.ShowDialog();
+                if (dgSKUs.SelectedItem != null)
+                {
+                    var sku = dgSKUs.SelectedItem as StockKeepingUnit;
+                    SKUAddEditWindow window = new SKUAddEditWindow(sku);
+                    window.ShowDialog();
+                }
             }
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            var obj = dgSKUs.SelectedItem as StockKeepingUnit;
-            if (obj != null)
+            if (App.Rights.D)
             {
-                if (MessageBox.Show($"Remove the selected unit?", "Removing",
-                    MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                var obj = dgSKUs.SelectedItem as StockKeepingUnit;
+                if (obj != null)
                 {
-                    try
+                    if (MessageBox.Show($"Remove the selected unit?", "Removing",
+                        MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
-                        App.DB.StockKeepingUnits.Remove(obj);
-                        App.DB.SaveChanges();
+                        try
+                        {
+                            App.DB.StockKeepingUnits.Remove(obj);
+                            App.DB.SaveChanges();
+                        }
+                        catch
+                        {
+                            MessageBox.Show($"Error: the unit hasn't been removed.");
+                        }
+                        MessageBox.Show($"The unit has successfully been removed.");
+                        UpdateDataGrid();
                     }
-                    catch
-                    {
-                        MessageBox.Show($"Error: the unit hasn't been removed.");
-                    }
-                    MessageBox.Show($"The unit has successfully been removed.");
-                    UpdateDataGrid();
                 }
             }
         }
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            UpdateDataGrid(); // Or load from App.DB.
+            if (App.Rights.R)
+                UpdateDataGrid();
         }
     }
 }

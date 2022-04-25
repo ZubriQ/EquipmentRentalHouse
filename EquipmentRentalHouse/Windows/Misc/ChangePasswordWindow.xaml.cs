@@ -57,13 +57,18 @@ namespace EquipmentRentalHouse.Windows.Misc
 
         private void btn_Change_Click(object sender, RoutedEventArgs e)
         {
-            byte[] hashBytes = Convert.FromBase64String(_user.Password);
-            byte[] hash = GetHash(hashBytes);
-            bool access = CheckAccess(hashBytes, hash);
+            if (UserDataChecker.CheckPassword(pb_NewPassword.Password))
+            {
+                byte[] hashBytes = Convert.FromBase64String(_user.Password);
+                byte[] hash = GetHash(hashBytes);
+                bool access = CheckAccess(hashBytes, hash);
 
-            if (access && (pb_NewPassword.Password == pb_ConfirmPassword.Password))
-                ChangePassword();
-            else MessageBox.Show("Passwords do not match.");
+                if (access && (pb_NewPassword.Password == pb_ConfirmPassword.Password))
+                    ChangePassword();
+                else MessageBox.Show("Passwords do not match.");
+            }
+            else MessageBox.Show("New password can contain letters, digits or " +
+                "special symbols. Password length must be at least 6 characters.");
         }
 
         byte[] GetHash(byte[] hashBytes)

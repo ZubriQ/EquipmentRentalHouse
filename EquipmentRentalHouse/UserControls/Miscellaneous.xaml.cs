@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace EquipmentRentalHouse.UserControls
 {
-    /// <summary>
-    /// Логика взаимодействия для Miscellaneous.xaml
-    /// </summary>
     public partial class Miscellaneous : UserControl
     {
         public Miscellaneous()

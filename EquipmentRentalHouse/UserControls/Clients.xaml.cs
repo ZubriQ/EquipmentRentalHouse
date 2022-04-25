@@ -1,5 +1,6 @@
 ﻿using EquipmentRentalHouse.Database;
 using EquipmentRentalHouse.Windows.Clients;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -216,6 +217,75 @@ namespace EquipmentRentalHouse.UserControls
             _clients = App.DB.Clients.ToList();
             dgClients.Items.Refresh();
             //dgClients.ItemsSource = _clients;
+        }
+
+        private void btnMakeClientAccount_Click(object sender, RoutedEventArgs e)
+        {
+            var client = dgClients.SelectedItem as Client;
+            if (client != null) // Are you sure you want to create a word file?
+            {
+                if (MessageBox.Show($"Are you sure you want to export an invoice of" +
+                    $" the selected client?",
+                    "Removing", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    try
+                    {
+                        MakeWordFile(client);
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        void MakeWordFile(Client client)
+        {
+            object missing = System.Reflection.Missing.Value;
+            Microsoft.Office.Interop.Word.Application word =
+                new Microsoft.Office.Interop.Word.Application
+                {
+                    ShowAnimation = false,
+                    Visible = false
+                };
+            Microsoft.Office.Interop.Word.Document document =
+                word.Documents.Add(ref missing, ref missing, ref missing, ref missing);
+            ExportClientData(client, document);
+            SaveWordFile(word, document, ref missing);
+        }
+
+        void ExportClientData(Client client, Microsoft.Office.Interop.Word.Document doc)
+        {
+            doc.Content.Text += "\tORDER";
+            doc.Content.Text += $"Client: {client.FullName}";
+            doc.Content.Text += $"Phone: {client.Phone}";
+            doc.Content.Text += $"Date: {client.DateOfOrder}";
+            doc.Content.Text += $"Devices:";
+            decimal totalOrderPrice = 0;
+            int i = 1;
+            foreach (var item in client.Orders)
+            {
+                totalOrderPrice += item.StockKeepingUnit.RentalPrice;
+                doc.Content.Text += $"\t{i++}: {item.StockKeepingUnit.Device.Name}, " +
+                    $"rental price: {item.StockKeepingUnit.RentalPrice}";
+            }
+            doc.Content.Text += $"Total price: {totalOrderPrice}";
+        }
+
+        void SaveWordFile(Microsoft.Office.Interop.Word.Application word, 
+                          Microsoft.Office.Interop.Word.Document doc, 
+                          ref object missing)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "Word Document|*.docx";
+            save.Title = "Save tenant account";
+            save.ShowDialog();
+
+            object filename = save.FileName;
+            doc.SaveAs2(ref filename);
+            doc.Close(ref missing, ref missing, ref missing);
+            doc = null;
+            word.Quit(ref missing, ref missing, ref missing);
+            word = null;
+            MessageBox.Show("The account has been successfully created.");
         }
     }
 }

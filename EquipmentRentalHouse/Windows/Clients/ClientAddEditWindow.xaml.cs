@@ -180,7 +180,7 @@ namespace EquipmentRentalHouse.Windows.Clients
         {
             if (!UserDataChecker.CheckPassportCode(txtPassportCode.Text))
                 return false;
-            if (!UserDataChecker.CheckName(txtPassportNumber.Text))
+            if (!UserDataChecker.CheckPassportNumber(txtPassportNumber.Text))
                 return false;
 
             return true;
@@ -188,7 +188,7 @@ namespace EquipmentRentalHouse.Windows.Clients
 
         void FinishAdding()
         {
-            if (Basket.Count > 0) // TODO: check the client's fields with Regex.
+            if (Basket.Count > 0)
             {
                 try
                 {

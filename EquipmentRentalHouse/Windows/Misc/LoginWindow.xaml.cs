@@ -72,8 +72,10 @@ namespace EquipmentRentalHouse.Windows.Misc
 
         void SignIn()
         {
-            var user = App.DB.Users.FirstOrDefault(u => u.Login == txtUsername.Text);
-            var valid = user?.ObjectsUsers.FirstOrDefault(v => v.Object.Name == "Equipment Rental House");
+            var user = App.DB.Users.FirstOrDefault(
+                u => u.Login == txtUsername.Text);
+            var valid = user?.ObjectsUsers.FirstOrDefault(
+                v => v.Object.Name == "Equipment Rental House");
             // Check if the user has rights.
             if (valid != null)
             {

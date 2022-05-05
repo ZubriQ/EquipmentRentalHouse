@@ -13,10 +13,10 @@ namespace EquipmentRentalHouse.Database
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ERHEntities : DbContext
+    public partial class rentalhouseEntities : DbContext
     {
-        public ERHEntities()
-            : base("name=ERHEntities")
+        public rentalhouseEntities()
+            : base("name=rentalhouseEntities")
         {
         }
     

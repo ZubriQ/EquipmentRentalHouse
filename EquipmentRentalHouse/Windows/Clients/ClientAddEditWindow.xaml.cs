@@ -130,7 +130,7 @@ namespace EquipmentRentalHouse.Windows.Clients
             else tbSearchPlaceholder.Text = "";
         }
 
-        void SearchingItems() // TODO: filters
+        void SearchingItems()
         {
             Stock = Stock.Where(s => s.Number.Contains(txtSearch.Text))
                          .Except(Basket)

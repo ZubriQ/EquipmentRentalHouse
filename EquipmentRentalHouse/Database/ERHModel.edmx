@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище ERHModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище rentalhouseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Clients">
           <Key>
             <PropertyRef Name="Id" />
@@ -265,7 +265,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Хранилище ERHModelContainer">
+        <EntityContainer Name="Хранилище rentalhouseModelContainer">
           <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Devices" EntityType="Self.Devices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmploymentHistory" EntityType="Self.EmploymentHistory" Schema="dbo" store:Type="Tables" />
@@ -323,98 +323,41 @@
             <End Role="StockKeepingUnits" EntitySet="StockKeepingUnits" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ERHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ERHEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clients" EntityType="ERHModel.Client" />
-          <EntitySet Name="Devices" EntityType="ERHModel.Device" />
-          <EntitySet Name="EmploymentHistories" EntityType="ERHModel.EmploymentHistory" />
-          <EntitySet Name="Manufacturers" EntityType="ERHModel.Manufacturer" />
-          <EntitySet Name="Objects" EntityType="ERHModel.Object" />
-          <EntitySet Name="ObjectsUsers" EntityType="ERHModel.ObjectsUser" />
-          <EntitySet Name="Orders" EntityType="ERHModel.Order" />
-          <EntitySet Name="Positions" EntityType="ERHModel.Position" />
-          <EntitySet Name="Staffs" EntityType="ERHModel.Staff" />
-          <EntitySet Name="StockKeepingUnits" EntityType="ERHModel.StockKeepingUnit" />
-          <EntitySet Name="Streets" EntityType="ERHModel.Street" />
-          <EntitySet Name="Users" EntityType="ERHModel.User" />
-          <AssociationSet Name="FK_Clients_Streets" Association="ERHModel.FK_Clients_Streets">
-            <End Role="Street" EntitySet="Streets" />
-            <End Role="Client" EntitySet="Clients" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_Clients1" Association="ERHModel.FK_Orders_Clients1">
-            <End Role="Client" EntitySet="Clients" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StockKeepingUnits_Devices" Association="ERHModel.FK_StockKeepingUnits_Devices">
-            <End Role="Device" EntitySet="Devices" />
-            <End Role="StockKeepingUnit" EntitySet="StockKeepingUnits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmploymentHistory_Positions" Association="ERHModel.FK_EmploymentHistory_Positions">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="EmploymentHistory" EntitySet="EmploymentHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmploymentHistory_Staff" Association="ERHModel.FK_EmploymentHistory_Staff">
-            <End Role="Staff" EntitySet="Staffs" />
-            <End Role="EmploymentHistory" EntitySet="EmploymentHistories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_StockKeepingUnits_Manufacturers" Association="ERHModel.FK_StockKeepingUnits_Manufacturers">
-            <End Role="Manufacturer" EntitySet="Manufacturers" />
-            <End Role="StockKeepingUnit" EntitySet="StockKeepingUnits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ObjectsUsers_Objects" Association="ERHModel.FK_ObjectsUsers_Objects">
-            <End Role="Object" EntitySet="Objects" />
-            <End Role="ObjectsUser" EntitySet="ObjectsUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ObjectsUsers_Users" Association="ERHModel.FK_ObjectsUsers_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="ObjectsUser" EntitySet="ObjectsUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Orders_StockKeepingUnits1" Association="ERHModel.FK_Orders_StockKeepingUnits1">
-            <End Role="StockKeepingUnit" EntitySet="StockKeepingUnits" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Positions" Association="ERHModel.FK_Staff_Positions">
-            <End Role="Position" EntitySet="Positions" />
-            <End Role="Staff" EntitySet="Staffs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Staff_Streets" Association="ERHModel.FK_Staff_Streets">
-            <End Role="Street" EntitySet="Streets" />
-            <End Role="Staff" EntitySet="Staffs" />
-          </AssociationSet>
-        </EntityContainer>
+      <Schema Namespace="rentalhouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Building" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Building" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StreetId" Type="Int32" Nullable="false" />
-          <Property Name="Apartment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateOfOrder" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PassportIssuedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportIssuedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PassportDateOfIssue" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="PassportDateOfExpiration" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="PassportCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PassportPlaceOfBirth" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Street" Relationship="ERHModel.FK_Clients_Streets" FromRole="Client" ToRole="Street" />
-          <NavigationProperty Name="Orders" Relationship="ERHModel.FK_Orders_Clients1" FromRole="Client" ToRole="Order" />
+          <Property Name="PassportCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportPlaceOfBirth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Clients_Streets" FromRole="Clients" ToRole="Streets" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Clients1" FromRole="Clients" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Device">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="StockKeepingUnits" Relationship="ERHModel.FK_StockKeepingUnits_Devices" FromRole="Device" ToRole="StockKeepingUnit" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StockKeepingUnits" Relationship="Self.FK_StockKeepingUnits_Devices" FromRole="Devices" ToRole="StockKeepingUnits" />
         </EntityType>
         <EntityType Name="EmploymentHistory">
           <Key>
@@ -423,26 +366,26 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StaffId" Type="Int32" Nullable="false" />
           <Property Name="PositionId" Type="Int32" Nullable="false" />
-          <Property Name="ReasonForTransfer" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonForTransfer" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfOrder" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Position" Relationship="ERHModel.FK_EmploymentHistory_Positions" FromRole="EmploymentHistory" ToRole="Position" />
-          <NavigationProperty Name="Staff" Relationship="ERHModel.FK_EmploymentHistory_Staff" FromRole="EmploymentHistory" ToRole="Staff" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_EmploymentHistory_Positions" FromRole="EmploymentHistory" ToRole="Positions" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK_EmploymentHistory_Staff" FromRole="EmploymentHistory" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Manufacturer">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="StockKeepingUnits" Relationship="ERHModel.FK_StockKeepingUnits_Manufacturers" FromRole="Manufacturer" ToRole="StockKeepingUnit" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="StockKeepingUnits" Relationship="Self.FK_StockKeepingUnits_Manufacturers" FromRole="Manufacturers" ToRole="StockKeepingUnits" />
         </EntityType>
         <EntityType Name="Object">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ObjectsUsers" Relationship="ERHModel.FK_ObjectsUsers_Objects" FromRole="Object" ToRole="ObjectsUser" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ObjectsUsers" Relationship="Self.FK_ObjectsUsers_Objects" FromRole="Objects" ToRole="ObjectsUsers" />
         </EntityType>
         <EntityType Name="ObjectsUser">
           <Key>
@@ -455,8 +398,8 @@
           <Property Name="R" Type="Boolean" Nullable="false" />
           <Property Name="U" Type="Boolean" Nullable="false" />
           <Property Name="D" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Object" Relationship="ERHModel.FK_ObjectsUsers_Objects" FromRole="ObjectsUser" ToRole="Object" />
-          <NavigationProperty Name="User" Relationship="ERHModel.FK_ObjectsUsers_Users" FromRole="ObjectsUser" ToRole="User" />
+          <NavigationProperty Name="Object" Relationship="Self.FK_ObjectsUsers_Objects" FromRole="ObjectsUsers" ToRole="Objects" />
+          <NavigationProperty Name="User" Relationship="Self.FK_ObjectsUsers_Users" FromRole="ObjectsUsers" ToRole="Users" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -469,113 +412,113 @@
           <Property Name="DateOfExpiration" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsReturned" Type="Boolean" Nullable="false" />
           <Property Name="DateOfReturn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Client" Relationship="ERHModel.FK_Orders_Clients1" FromRole="Order" ToRole="Client" />
-          <NavigationProperty Name="StockKeepingUnit" Relationship="ERHModel.FK_Orders_StockKeepingUnits1" FromRole="Order" ToRole="StockKeepingUnit" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Orders_Clients1" FromRole="Orders" ToRole="Clients" />
+          <NavigationProperty Name="StockKeepingUnit" Relationship="Self.FK_Orders_StockKeepingUnits1" FromRole="Orders" ToRole="StockKeepingUnits" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EmploymentHistories" Relationship="ERHModel.FK_EmploymentHistory_Positions" FromRole="Position" ToRole="EmploymentHistory" />
-          <NavigationProperty Name="Staffs" Relationship="ERHModel.FK_Staff_Positions" FromRole="Position" ToRole="Staff" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmploymentHistories" Relationship="Self.FK_EmploymentHistory_Positions" FromRole="Positions" ToRole="EmploymentHistory" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Positions" FromRole="Positions" ToRole="Staff" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Building" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Building" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StreetId" Type="Int32" Nullable="false" />
-          <Property Name="Apartment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="PositionId" Type="Int32" Nullable="false" />
           <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SalaryIncrease" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="SalaryIncrease" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IsDismissed" Type="Boolean" Nullable="false" />
           <Property Name="DateOfDismissal" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="EmploymentHistories" Relationship="ERHModel.FK_EmploymentHistory_Staff" FromRole="Staff" ToRole="EmploymentHistory" />
-          <NavigationProperty Name="Position" Relationship="ERHModel.FK_Staff_Positions" FromRole="Staff" ToRole="Position" />
-          <NavigationProperty Name="Street" Relationship="ERHModel.FK_Staff_Streets" FromRole="Staff" ToRole="Street" />
+          <NavigationProperty Name="EmploymentHistories" Relationship="Self.FK_EmploymentHistory_Staff" FromRole="Staff" ToRole="EmploymentHistory" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_Staff_Positions" FromRole="Staff" ToRole="Positions" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Staff_Streets" FromRole="Staff" ToRole="Streets" />
         </EntityType>
         <EntityType Name="StockKeepingUnit">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Number" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <Property Name="DeviceId" Type="Int32" Nullable="false" />
-          <Property Name="RentalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="DevicePrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="RentalPrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="DevicePrice" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="IsInStock" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Device" Relationship="ERHModel.FK_StockKeepingUnits_Devices" FromRole="StockKeepingUnit" ToRole="Device" />
-          <NavigationProperty Name="Manufacturer" Relationship="ERHModel.FK_StockKeepingUnits_Manufacturers" FromRole="StockKeepingUnit" ToRole="Manufacturer" />
-          <NavigationProperty Name="Orders" Relationship="ERHModel.FK_Orders_StockKeepingUnits1" FromRole="StockKeepingUnit" ToRole="Order" />
+          <NavigationProperty Name="Device" Relationship="Self.FK_StockKeepingUnits_Devices" FromRole="StockKeepingUnits" ToRole="Devices" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_StockKeepingUnits_Manufacturers" FromRole="StockKeepingUnits" ToRole="Manufacturers" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_StockKeepingUnits1" FromRole="StockKeepingUnits" ToRole="Orders" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Clients" Relationship="ERHModel.FK_Clients_Streets" FromRole="Street" ToRole="Client" />
-          <NavigationProperty Name="Staffs" Relationship="ERHModel.FK_Staff_Streets" FromRole="Street" ToRole="Staff" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK_Clients_Streets" FromRole="Streets" ToRole="Clients" />
+          <NavigationProperty Name="Staffs" Relationship="Self.FK_Staff_Streets" FromRole="Streets" ToRole="Staff" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="70" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ObjectsUsers" Relationship="ERHModel.FK_ObjectsUsers_Users" FromRole="User" ToRole="ObjectsUser" />
+          <Property Name="Login" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="70" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ObjectsUsers" Relationship="Self.FK_ObjectsUsers_Users" FromRole="Users" ToRole="ObjectsUsers" />
         </EntityType>
         <Association Name="FK_Clients_Streets">
-          <End Type="ERHModel.Street" Role="Street" Multiplicity="1" />
-          <End Type="ERHModel.Client" Role="Client" Multiplicity="*" />
+          <End Role="Streets" Type="Self.Street" Multiplicity="1" />
+          <End Role="Clients" Type="Self.Client" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Street">
+            <Principal Role="Streets">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Client">
+            <Dependent Role="Clients">
               <PropertyRef Name="StreetId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_Clients1">
-          <End Type="ERHModel.Client" Role="Client" Multiplicity="1" />
-          <End Type="ERHModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Client">
+            <Principal Role="Clients">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="Orders">
               <PropertyRef Name="ClientId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StockKeepingUnits_Devices">
-          <End Type="ERHModel.Device" Role="Device" Multiplicity="1" />
-          <End Type="ERHModel.StockKeepingUnit" Role="StockKeepingUnit" Multiplicity="*" />
+          <End Role="Devices" Type="Self.Device" Multiplicity="1" />
+          <End Role="StockKeepingUnits" Type="Self.StockKeepingUnit" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Device">
+            <Principal Role="Devices">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="StockKeepingUnit">
+            <Dependent Role="StockKeepingUnits">
               <PropertyRef Name="DeviceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmploymentHistory_Positions">
-          <End Type="ERHModel.Position" Role="Position" Multiplicity="1" />
-          <End Type="ERHModel.EmploymentHistory" Role="EmploymentHistory" Multiplicity="*" />
+          <End Role="Positions" Type="Self.Position" Multiplicity="1" />
+          <End Role="EmploymentHistory" Type="Self.EmploymentHistory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Position">
+            <Principal Role="Positions">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="EmploymentHistory">
@@ -584,8 +527,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EmploymentHistory_Staff">
-          <End Type="ERHModel.Staff" Role="Staff" Multiplicity="1" />
-          <End Type="ERHModel.EmploymentHistory" Role="EmploymentHistory" Multiplicity="*" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="EmploymentHistory" Type="Self.EmploymentHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Staff">
               <PropertyRef Name="Id" />
@@ -596,58 +539,58 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_StockKeepingUnits_Manufacturers">
-          <End Type="ERHModel.Manufacturer" Role="Manufacturer" Multiplicity="1" />
-          <End Type="ERHModel.StockKeepingUnit" Role="StockKeepingUnit" Multiplicity="*" />
+          <End Role="Manufacturers" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="StockKeepingUnits" Type="Self.StockKeepingUnit" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Manufacturer">
+            <Principal Role="Manufacturers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="StockKeepingUnit">
+            <Dependent Role="StockKeepingUnits">
               <PropertyRef Name="ManufacturerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ObjectsUsers_Objects">
-          <End Type="ERHModel.Object" Role="Object" Multiplicity="1" />
-          <End Type="ERHModel.ObjectsUser" Role="ObjectsUser" Multiplicity="*" />
+          <End Role="Objects" Type="Self.Object" Multiplicity="1" />
+          <End Role="ObjectsUsers" Type="Self.ObjectsUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Object">
+            <Principal Role="Objects">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ObjectsUser">
+            <Dependent Role="ObjectsUsers">
               <PropertyRef Name="ObjectId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ObjectsUsers_Users">
-          <End Type="ERHModel.User" Role="User" Multiplicity="1" />
-          <End Type="ERHModel.ObjectsUser" Role="ObjectsUser" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="ObjectsUsers" Type="Self.ObjectsUser" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
+            <Principal Role="Users">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="ObjectsUser">
+            <Dependent Role="ObjectsUsers">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Orders_StockKeepingUnits1">
-          <End Type="ERHModel.StockKeepingUnit" Role="StockKeepingUnit" Multiplicity="1" />
-          <End Type="ERHModel.Order" Role="Order" Multiplicity="*" />
+          <End Role="StockKeepingUnits" Type="Self.StockKeepingUnit" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="StockKeepingUnit">
+            <Principal Role="StockKeepingUnits">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Order">
+            <Dependent Role="Orders">
               <PropertyRef Name="StockKeepingUnitId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Staff_Positions">
-          <End Type="ERHModel.Position" Role="Position" Multiplicity="1" />
-          <End Type="ERHModel.Staff" Role="Staff" Multiplicity="*" />
+          <End Role="Positions" Type="Self.Position" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Position">
+            <Principal Role="Positions">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Staff">
@@ -656,10 +599,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Staff_Streets">
-          <End Type="ERHModel.Street" Role="Street" Multiplicity="1" />
-          <End Type="ERHModel.Staff" Role="Staff" Multiplicity="*" />
+          <End Role="Streets" Type="Self.Street" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Street">
+            <Principal Role="Streets">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Staff">
@@ -667,147 +610,205 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+        <EntityContainer Name="rentalhouseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Devices" EntityType="Self.Device" />
+          <EntitySet Name="EmploymentHistories" EntityType="Self.EmploymentHistory" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
+          <EntitySet Name="Objects" EntityType="Self.Object" />
+          <EntitySet Name="ObjectsUsers" EntityType="Self.ObjectsUser" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="Staffs" EntityType="Self.Staff" />
+          <EntitySet Name="StockKeepingUnits" EntityType="Self.StockKeepingUnit" />
+          <EntitySet Name="Streets" EntityType="Self.Street" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Clients_Streets" Association="Self.FK_Clients_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Clients" EntitySet="Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Clients1" Association="Self.FK_Orders_Clients1">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockKeepingUnits_Devices" Association="Self.FK_StockKeepingUnits_Devices">
+            <End Role="Devices" EntitySet="Devices" />
+            <End Role="StockKeepingUnits" EntitySet="StockKeepingUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmploymentHistory_Positions" Association="Self.FK_EmploymentHistory_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="EmploymentHistory" EntitySet="EmploymentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmploymentHistory_Staff" Association="Self.FK_EmploymentHistory_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="EmploymentHistory" EntitySet="EmploymentHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockKeepingUnits_Manufacturers" Association="Self.FK_StockKeepingUnits_Manufacturers">
+            <End Role="Manufacturers" EntitySet="Manufacturers" />
+            <End Role="StockKeepingUnits" EntitySet="StockKeepingUnits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectsUsers_Objects" Association="Self.FK_ObjectsUsers_Objects">
+            <End Role="Objects" EntitySet="Objects" />
+            <End Role="ObjectsUsers" EntitySet="ObjectsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ObjectsUsers_Users" Association="Self.FK_ObjectsUsers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ObjectsUsers" EntitySet="ObjectsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_StockKeepingUnits1" Association="Self.FK_Orders_StockKeepingUnits1">
+            <End Role="StockKeepingUnits" EntitySet="StockKeepingUnits" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Positions" Association="Self.FK_Staff_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Streets" Association="Self.FK_Staff_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище ERHModelContainer" CdmEntityContainer="ERHEntities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище rentalhouseModelContainer" CdmEntityContainer="rentalhouseEntities">
           <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="ERHModel.Client">
+            <EntityTypeMapping TypeName="rentalhouseModel.Client">
               <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="PassportPlaceOfBirth" ColumnName="PassportPlaceOfBirth" />
-                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
-                <ScalarProperty Name="PassportCode" ColumnName="PassportCode" />
-                <ScalarProperty Name="PassportDateOfExpiration" ColumnName="PassportDateOfExpiration" />
-                <ScalarProperty Name="PassportDateOfIssue" ColumnName="PassportDateOfIssue" />
-                <ScalarProperty Name="PassportIssuedBy" ColumnName="PassportIssuedBy" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
-                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
-                <ScalarProperty Name="Building" ColumnName="Building" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="PassportIssuedBy" ColumnName="PassportIssuedBy" />
+                <ScalarProperty Name="PassportDateOfIssue" ColumnName="PassportDateOfIssue" />
+                <ScalarProperty Name="PassportDateOfExpiration" ColumnName="PassportDateOfExpiration" />
+                <ScalarProperty Name="PassportCode" ColumnName="PassportCode" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PassportPlaceOfBirth" ColumnName="PassportPlaceOfBirth" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Devices">
-            <EntityTypeMapping TypeName="ERHModel.Device">
+            <EntityTypeMapping TypeName="rentalhouseModel.Device">
               <MappingFragment StoreEntitySet="Devices">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmploymentHistories">
-            <EntityTypeMapping TypeName="ERHModel.EmploymentHistory">
+            <EntityTypeMapping TypeName="rentalhouseModel.EmploymentHistory">
               <MappingFragment StoreEntitySet="EmploymentHistory">
-                <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
-                <ScalarProperty Name="ReasonForTransfer" ColumnName="ReasonForTransfer" />
-                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="ReasonForTransfer" ColumnName="ReasonForTransfer" />
+                <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturers">
-            <EntityTypeMapping TypeName="ERHModel.Manufacturer">
+            <EntityTypeMapping TypeName="rentalhouseModel.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturers">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Objects">
-            <EntityTypeMapping TypeName="ERHModel.Object">
+            <EntityTypeMapping TypeName="rentalhouseModel.Object">
               <MappingFragment StoreEntitySet="Objects">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ObjectsUsers">
-            <EntityTypeMapping TypeName="ERHModel.ObjectsUser">
+            <EntityTypeMapping TypeName="rentalhouseModel.ObjectsUser">
               <MappingFragment StoreEntitySet="ObjectsUsers">
-                <ScalarProperty Name="D" ColumnName="D" />
-                <ScalarProperty Name="U" ColumnName="U" />
-                <ScalarProperty Name="R" ColumnName="R" />
-                <ScalarProperty Name="C" ColumnName="C" />
-                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ObjectId" ColumnName="ObjectId" />
+                <ScalarProperty Name="C" ColumnName="C" />
+                <ScalarProperty Name="R" ColumnName="R" />
+                <ScalarProperty Name="U" ColumnName="U" />
+                <ScalarProperty Name="D" ColumnName="D" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="ERHModel.Order">
+            <EntityTypeMapping TypeName="rentalhouseModel.Order">
               <MappingFragment StoreEntitySet="Orders">
-                <ScalarProperty Name="DateOfReturn" ColumnName="DateOfReturn" />
-                <ScalarProperty Name="IsReturned" ColumnName="IsReturned" />
-                <ScalarProperty Name="DateOfExpiration" ColumnName="DateOfExpiration" />
-                <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
-                <ScalarProperty Name="StockKeepingUnitId" ColumnName="StockKeepingUnitId" />
                 <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="StockKeepingUnitId" ColumnName="StockKeepingUnitId" />
+                <ScalarProperty Name="DateOfOrder" ColumnName="DateOfOrder" />
+                <ScalarProperty Name="DateOfExpiration" ColumnName="DateOfExpiration" />
+                <ScalarProperty Name="IsReturned" ColumnName="IsReturned" />
+                <ScalarProperty Name="DateOfReturn" ColumnName="DateOfReturn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Positions">
-            <EntityTypeMapping TypeName="ERHModel.Position">
+            <EntityTypeMapping TypeName="rentalhouseModel.Position">
               <MappingFragment StoreEntitySet="Positions">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staffs">
-            <EntityTypeMapping TypeName="ERHModel.Staff">
+            <EntityTypeMapping TypeName="rentalhouseModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="DateOfDismissal" ColumnName="DateOfDismissal" />
-                <ScalarProperty Name="IsDismissed" ColumnName="IsDismissed" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="SalaryIncrease" ColumnName="SalaryIncrease" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
-                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
-                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
-                <ScalarProperty Name="Building" ColumnName="Building" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="Apartment" ColumnName="Apartment" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SalaryIncrease" ColumnName="SalaryIncrease" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="IsDismissed" ColumnName="IsDismissed" />
+                <ScalarProperty Name="DateOfDismissal" ColumnName="DateOfDismissal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StockKeepingUnits">
-            <EntityTypeMapping TypeName="ERHModel.StockKeepingUnit">
+            <EntityTypeMapping TypeName="rentalhouseModel.StockKeepingUnit">
               <MappingFragment StoreEntitySet="StockKeepingUnits">
-                <ScalarProperty Name="IsInStock" ColumnName="IsInStock" />
-                <ScalarProperty Name="DevicePrice" ColumnName="DevicePrice" />
-                <ScalarProperty Name="RentalPrice" ColumnName="RentalPrice" />
-                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
-                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
+                <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
+                <ScalarProperty Name="RentalPrice" ColumnName="RentalPrice" />
+                <ScalarProperty Name="DevicePrice" ColumnName="DevicePrice" />
+                <ScalarProperty Name="IsInStock" ColumnName="IsInStock" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Streets">
-            <EntityTypeMapping TypeName="ERHModel.Street">
+            <EntityTypeMapping TypeName="rentalhouseModel.Street">
               <MappingFragment StoreEntitySet="Streets">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ERHModel.User">
+            <EntityTypeMapping TypeName="rentalhouseModel.User">
               <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

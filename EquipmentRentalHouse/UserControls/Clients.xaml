@@ -94,7 +94,7 @@
 
                 <Button x:Name="btnMakeClientAccount" HorizontalAlignment="Left"
                         Background="Transparent" BorderBrush="Transparent" 
-                        ToolTip="Open passport data of a client in other window."
+                        ToolTip="Export into a Word file."
                         Margin="5,0,0,0" Click="btnMakeClientAccount_Click">
                     <Viewbox>
                         <Canvas Width="24" Height="24" Margin="2" RenderTransformOrigin="0.607,0.607">

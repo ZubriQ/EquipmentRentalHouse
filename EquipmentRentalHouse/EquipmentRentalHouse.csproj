@@ -321,6 +321,9 @@
     </EmbeddedResource>
     <Resource Include="Fonts\Cinzel-Regular.otf" />
     <Resource Include="Fonts\CinzelDecorative-Regular.otf" />
+    <Resource Include="Fonts\Dosis-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <EntityDeploy Include="Database\ERHModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ERHModel.Designer.cs</LastGenOutput>
@@ -328,9 +331,6 @@
     <None Include="Database\ERHModel.edmx.diagram">
       <DependentUpon>ERHModel.edmx</DependentUpon>
     </None>
-    <Resource Include="Fonts\Dosis-Regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
     <None Include="Images\icon.psd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -354,20 +354,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Database\ERHModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ERHModel.Context.cs</LastGenOutput>
       <DependentUpon>ERHModel.edmx</DependentUpon>
+      <LastGenOutput>ERHModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Database\ERHModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ERHModel.edmx</DependentUpon>
       <LastGenOutput>ERHModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="Images\icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Database\ERHscript.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

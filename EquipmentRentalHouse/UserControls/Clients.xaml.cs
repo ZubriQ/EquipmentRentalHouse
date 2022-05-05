@@ -3,6 +3,7 @@ using EquipmentRentalHouse.Windows.Clients;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,11 @@ namespace EquipmentRentalHouse.UserControls
             InitializeComponent();
             InitializeButtonStates();
             HidePassportData();
-            if (App.Rights.R)
+
+            if (App.Rights.R) 
             {
-                _clients = App.DB.Clients.ToList();
+                App.DB.Clients.Load();
+                _clients = App.DB.Clients.Local.ToList();
                 dgClients.ItemsSource = _clients;
             }
         }
@@ -278,13 +281,10 @@ namespace EquipmentRentalHouse.UserControls
             save.Filter = "Word Document|*.docx";
             save.Title = "Save tenant account";
             save.ShowDialog();
-
             object filename = save.FileName;
             doc.SaveAs2(ref filename);
             doc.Close(ref missing, ref missing, ref missing);
-            doc = null;
             word.Quit(ref missing, ref missing, ref missing);
-            word = null;
             MessageBox.Show("The account has been successfully created.");
         }
     }

@@ -48,7 +48,7 @@
                     <Button x:Name="btn_ReturnToStock" Template="{StaticResource Submit}" Content="Return to the Stock"
                     Margin="5" Width="155" Height="28" Click="btn_ReturnToStock_Click" 
                         />
-                    <Button x:Name="btn_CancelReturning" Template="{StaticResource Submit}" Content="Cancel a Return"
+                    <Button x:Name="btn_CancelReturning" Template="{StaticResource Submit}" Content="Cancel Return"
                     Margin="5" Width="135" Height="28" Click="btn_CancelReturning_Click"
                         />
                 </DockPanel>

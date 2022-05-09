@@ -331,6 +331,7 @@
     <None Include="Database\ERHModel.edmx.diagram">
       <DependentUpon>ERHModel.edmx</DependentUpon>
     </None>
+    <None Include="Database\master.bak" />
     <None Include="Images\icon.psd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

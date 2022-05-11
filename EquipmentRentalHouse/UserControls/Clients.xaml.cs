@@ -31,8 +31,7 @@ namespace EquipmentRentalHouse.UserControls
 
             if (App.Rights.R) 
             {
-                App.DB.Clients.Load();
-                _clients = App.DB.Clients.Local.ToList();
+                _clients = App.DB.Clients.ToList();
                 dgClients.ItemsSource = _clients;
             }
         }
@@ -218,6 +217,7 @@ namespace EquipmentRentalHouse.UserControls
         void Update()
         {
             _clients = App.DB.Clients.ToList();
+            dgClients.ItemsSource = App.DB.Clients.ToList();
             dgClients.Items.Refresh();
             //dgClients.ItemsSource = _clients;
         }

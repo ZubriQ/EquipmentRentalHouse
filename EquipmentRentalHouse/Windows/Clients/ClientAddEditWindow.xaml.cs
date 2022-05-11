@@ -193,6 +193,7 @@ namespace EquipmentRentalHouse.Windows.Clients
                 try
                 {
                     App.DB.Clients.Add(_client);
+                    App.DB.Orders.AddRange(Orders);
                     App.DB.SaveChanges();
                     MessageBox.Show($"Rental order has been successfully added.");
                     Close();
@@ -205,7 +206,7 @@ namespace EquipmentRentalHouse.Windows.Clients
         {
             try
             {
-                App.DB.Orders.AddRange(Orders);
+                //App.DB.Orders.AddRange(Orders);
                 App.DB.SaveChanges();
                 MessageBox.Show($"Rental order has been successfully changed.");
                 Close();
@@ -259,7 +260,7 @@ namespace EquipmentRentalHouse.Windows.Clients
                 DateOfExpiration = RentExpirationDate.Value, // TODO: if RentExpirationDate > Today
                 DateOfOrder = DateTime.Now,
                 IsReturned = false,
-                ClientId = _client.Id,
+                //ClientId = _client.Id,
                 StockKeepingUnitId = skuItem.Id,
             };
             Orders.Add(buyingDevice);

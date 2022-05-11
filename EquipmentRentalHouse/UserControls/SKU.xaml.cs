@@ -52,13 +52,20 @@ namespace EquipmentRentalHouse.UserControls
         private void chkIsInStock_Unchecked(object sender, RoutedEventArgs e)
         {
             if (App.Rights.R)
-                dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == false).ToList();
+            {
+                var i = App.DB.StockKeepingUnits.Where(s => s.IsInStock == false).ToList();
+                dgSKUs.ItemsSource = i;
+            }
+                
         }
 
         private void chkIsInStock_Checked(object sender, RoutedEventArgs e)
         {
             if (App.Rights.R && dgSKUs != null)
-                dgSKUs.ItemsSource = _SKUs.Where(s => s.IsInStock == true).ToList();
+            {
+                var i = App.DB.StockKeepingUnits.Where(s => s.IsInStock == true).ToList();
+                dgSKUs.ItemsSource = i;
+            }
         }
 
         private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -132,7 +139,7 @@ namespace EquipmentRentalHouse.UserControls
                         var window = new SKUWhoRentedWindow(order);
                         window.ShowDialog();
                     }
-                    else MessageBox.Show("The selected item is in stock.");
+                    else MessageBox.Show("The selected item is in the stock.");
                 }
             }
         }

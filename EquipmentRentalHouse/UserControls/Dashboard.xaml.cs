@@ -36,7 +36,7 @@ namespace EquipmentRentalHouse.UserControls
             txtEmployeesTotal.Text = App.DB.Staffs.Count().ToString();
             txtEmployeesHired.Text = App.DB.Staffs.Where(x => x.IsDismissed == false).Count().ToString();
             txtDismissedStaff.Text = App.DB.Staffs.Where(x => x.IsDismissed == true).Count().ToString();
-            txtClientsTotal.Text = App.DB.Staffs.Count().ToString();
+            txtClientsTotal.Text = App.DB.Clients.Count().ToString();
             txtDevicesTotal.Text = App.DB.StockKeepingUnits.Count().ToString();
             txtDevicesInStock.Text = App.DB.StockKeepingUnits.Where(x => x.IsInStock == true).Count().ToString();
             txtDevicesRented.Text = App.DB.StockKeepingUnits.Where(x => x.IsInStock == false).Count().ToString();

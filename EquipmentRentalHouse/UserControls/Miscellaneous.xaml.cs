@@ -21,6 +21,9 @@ namespace EquipmentRentalHouse.UserControls
         public Miscellaneous()
         {
             InitializeComponent();
+
+            if (App.Rights.U == false)
+                btn_ChangePassword.IsEnabled = false;
         }
 
         private void btn_ChangePassword_Click(object sender, RoutedEventArgs e)
